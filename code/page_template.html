@@ -1,0 +1,690 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Who Was Big When?</title>
+<meta name="description" content="Every English Football League and Premier League club's league position and average home crowd, season by season from {{data.first|raw}} to {{data.last|raw}}, on a map of England and Wales that moves through time.">
+<meta property="og:title" content="Who was big when? {{data.n_seasons|int}} seasons of English league football on one map">
+<meta property="og:description" content="{{data.n_clubs|int}} clubs, {{data.n_seasons|int}} seasons: where the big clubs were, the crowd peak of {{crowds.peak_season|raw}}, the fall to the 1980s and the towns that lost league football.">
+<meta property="og:image" content="https://maps.tristanhotham.com/who-was-big-when/header.png">
+<meta property="og:url" content="https://maps.tristanhotham.com/who-was-big-when/">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,800;9..144,900&family=IBM+Plex+Mono:wght@400;500&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
+<style>
+/* Matchday programme: newsprint, claret, floodlight orange, teal, violet for the four tiers */
+:root{
+  --bg:#F7F3EA; --panel:#EFE8DA; --fg:#1F1D1A; --muted:#6E675C; --rule:#E3DACA; --card:#FFFCF5; --border:#D3C8B4;
+  --hot:#9B1B30; --cool:#2F5D8A; --gold:#D69A12; --land:#ECE5D6; --sea:#F3EFE6;
+  --t1:#9B1B30; --t2:#D9752B; --t3:#2F7F86; --t4:#6A5A9C;
+  --display:"Fraunces",Georgia,"Times New Roman",serif;
+  --body:"Source Serif 4",Georgia,"Times New Roman",serif;
+  --mono:"IBM Plex Mono",ui-monospace,Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#161513; --panel:#211F1C; --fg:#EEE8DE; --muted:#A79F92; --rule:#36322D; --card:#1C1A17; --border:#4A443C;
+  --hot:#E06A7B; --cool:#86AEDC; --gold:#F0C14E; --land:#2A2723; --sea:#1A1816;
+  --t1:#E06A7B; --t2:#F0A060; --t3:#62BAC0; --t4:#A897DB; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#161513; --panel:#211F1C; --fg:#EEE8DE; --muted:#A79F92; --rule:#36322D; --card:#1C1A17; --border:#4A443C;
+  --hot:#E06A7B; --cool:#86AEDC; --gold:#F0C14E; --land:#2A2723; --sea:#1A1816;
+  --t1:#E06A7B; --t2:#F0A060; --t3:#62BAC0; --t4:#A897DB; color-scheme:dark}
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--fg);font:400 18px/1.62 var(--body);
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));overflow-x:hidden}
+.wrap{max-width:700px;margin:0 auto;padding-block:28px 64px}
+.wrap .bleed{width:min(1180px,calc(100vw - 32px));margin-left:calc((100% - min(1180px,100vw - 32px))/2);margin-right:0}
+a{color:inherit;text-decoration-color:var(--hot);text-underline-offset:3px}
+.kicker{font:500 12px/1 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--muted);display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.kicker b{background:var(--hot);color:#fff;padding:5px 8px;font-weight:500}
+header.hero{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:12px 24px;align-items:end;border-bottom:6px double var(--fg);padding-bottom:22px;margin-top:18px}
+h1{font:900 clamp(44px,11vw,96px)/.9 var(--display);letter-spacing:-.02em;margin:0;text-wrap:balance}
+h1 .a{color:var(--hot)} h1 .b{color:var(--t2)}
+.mark{width:clamp(78px,16vw,128px);height:auto;display:block}
+.dek{grid-column:1/-1;font-size:21px;line-height:1.42;margin:8px 0 0;max-width:56ch}
+.byline{font:400 13px/1.4 var(--mono);color:var(--muted);margin-top:14px}
+h2{font:800 34px/1.04 var(--display);letter-spacing:-.01em;margin:54px 0 10px;text-wrap:balance}
+h2 .n{font:500 13px/1 var(--mono);color:var(--hot);display:block;letter-spacing:.1em;margin-bottom:10px}
+h3{font:600 20px/1.25 var(--display);margin:28px 0 6px}
+p{margin:0 0 16px}
+.lede::first-letter{font:900 72px/.8 var(--display);float:left;margin:6px 10px 0 0;color:var(--hot)}
+.stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:1px;background:var(--rule);border:1px solid var(--rule);margin:26px 0 8px}
+.stats div{background:var(--card);padding:14px 12px}
+.stats b{display:block;font:900 clamp(22px,4.4vw,32px)/1 var(--display);letter-spacing:-.01em}
+.stats b.h{color:var(--hot)} .stats b.c{color:var(--t3)} .stats b.g{color:var(--t2)}
+.stats span{font:400 12px/1.35 var(--mono);color:var(--muted);display:block;margin-top:6px}
+@media (max-width:600px){.stats{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.figure{margin:26px 0 30px}
+.fig-h{font:600 19px/1.25 var(--display);margin:0 0 4px}
+.fig-sub{font:400 13px/1.45 var(--mono);color:var(--muted);margin:0 0 12px}
+.src{font:400 12px/1.45 var(--mono);color:var(--muted);margin-top:10px}
+.chart{width:100%;position:relative}
+.chart svg{display:block;width:100%;height:auto;overflow:visible}
+svg text{font-family:var(--mono);fill:var(--fg)}
+.lab{font-size:12px}.lab.m{fill:var(--muted)}.lab.b{font-weight:500}.lab.s{font-size:11px}
+.tip{position:absolute;pointer-events:none;background:var(--fg);color:var(--bg);font:400 12px/1.45 var(--mono);padding:8px 10px;border-radius:3px;max-width:290px;z-index:1000;transform:translate(-50%,calc(-100% - 12px));display:none}
+.tip b{font-weight:500}
+.controls{display:flex;gap:8px;align-items:center;margin:0 0 10px;flex-wrap:wrap}
+.scrollrow{display:flex;gap:6px;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:thin;padding-bottom:2px;max-width:100%}
+.scrollrow .btn{flex:0 0 auto;white-space:nowrap}
+.ctl-l{font:500 11px/1 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-right:2px;flex:0 0 auto;align-self:center}
+.btn{font:500 12px/1 var(--mono);background:var(--card);color:var(--fg);border:1px solid var(--border);border-radius:3px;padding:8px 10px;cursor:pointer;min-height:36px}
+.btn[aria-pressed="true"]{background:var(--fg);color:var(--bg);border-color:var(--fg)}
+.btn:focus-visible,input:focus-visible,summary:focus-visible,select:focus-visible{outline:2px solid var(--hot);outline-offset:2px}
+.searchbox{position:relative;flex:1 1 260px;min-width:0}
+input[type=search]{font:400 15px/1 var(--mono);background:var(--card);color:var(--fg);border:1px solid var(--border);border-radius:3px;padding:10px 11px;min-height:40px;width:100%}
+.suggest{position:absolute;left:0;right:0;top:100%;margin:2px 0 0;padding:0;list-style:none;background:var(--card);border:1px solid var(--border);z-index:1001;font:400 13px/1.3 var(--mono);display:none;max-height:340px;overflow:auto}
+.suggest li{padding:8px 10px;cursor:pointer;border-bottom:1px solid var(--rule)}
+.suggest li span{color:var(--muted)}
+.suggest li[aria-selected="true"],.suggest li:hover{background:var(--panel)}
+.timebar{display:grid;grid-template-columns:auto auto minmax(0,1fr);gap:10px;align-items:center;background:var(--card);border:1px solid var(--border);padding:8px 10px;margin:0 0 10px}
+.timebar .yr{font:900 30px/1 var(--display);min-width:4.4ch;letter-spacing:-.01em}
+.timebar input[type=range]{width:100%;accent-color:var(--hot);min-height:30px}
+.play{width:42px;height:42px;border-radius:50%;border:0;background:var(--hot);color:#fff;cursor:pointer;display:flex;align-items:center;justify-content:center;padding:0}
+.play svg{width:18px;height:18px}
+.speed{font:400 11px var(--mono);color:var(--muted)}
+.mapgrid{display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:14px;align-items:start}
+@media (max-width:900px){.mapgrid{grid-template-columns:1fr}}
+.side{background:var(--card);border:1px solid var(--border);padding:12px 12px 10px;font:400 13px/1.45 var(--mono);max-height:680px;overflow:auto}
+@media (max-width:900px){.side{max-height:none}}
+.side h4{font:500 11px/1 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin:14px 0 8px}
+.side h4:first-child{margin-top:2px}
+.side .big{font:800 26px/1.1 var(--display);margin:2px 0 4px}
+.side .sub{color:var(--muted);font-size:12px;margin:0 0 8px}
+.side table{width:100%;border-collapse:collapse;margin:4px 0 6px}
+.side td{padding:3px 4px 3px 0;border-bottom:1px solid var(--rule);vertical-align:top}
+.side td.num{text-align:right;white-space:nowrap}
+.side .spark svg{display:block;width:100%;height:auto}
+.go{cursor:pointer;text-decoration:underline;text-decoration-color:var(--border);text-underline-offset:3px}
+.back{font:400 12px var(--mono);background:none;border:0;color:var(--muted);padding:0;cursor:pointer;text-decoration:underline;margin-bottom:6px}
+.sw{display:inline-block;width:11px;height:11px;border-radius:50%;margin-right:6px;vertical-align:-1px;border:1px solid rgba(0,0,0,.15)}
+.lmap{height:640px;border:1px solid var(--border);background:var(--sea);border-radius:2px}
+@media (max-width:600px){.lmap{height:min(66vh,500px)}}
+.leaflet-container{font:400 12px/1.4 var(--mono);background:var(--sea)}
+.lyrBtn{background:var(--card,var(--bg));color:var(--fg);border:1px solid var(--border);border-radius:3px;font:600 12px/1 var(--mono);padding:8px 10px;cursor:pointer;box-shadow:0 1px 4px rgba(0,0,0,.12)}
+.lyrBtn[aria-expanded="true"]{background:var(--fg);color:var(--bg)}
+.lyrPanel{background:var(--card,var(--bg));color:var(--fg);border:1px solid var(--border);border-radius:3px;padding:10px 12px 8px;margin-top:6px;width:250px;box-shadow:0 2px 10px rgba(0,0,0,.15);font:400 12px/1.3 var(--mono);max-height:min(70vh,520px);overflow:auto}
+.lyrPanel[hidden]{display:none}
+.lyrPanel .row{margin:0 0 9px}
+.lyrPanel label{display:flex;gap:6px;align-items:center;cursor:pointer;font-weight:600}
+.lyrPanel input[type=range]{width:100%;accent-color:var(--fg)}
+.lyrPanel select{font:400 12px var(--mono);background:var(--bg);color:var(--fg);border:1px solid var(--border);border-radius:2px;padding:2px 4px;width:100%;min-height:0}
+.lyrPanel .sub{display:flex;gap:6px;align-items:center;color:var(--muted);font-size:11px;margin-top:3px}
+.lyrPanel .sub span{flex:0 0 58px}
+.lyrPanel .hd{font:500 10.5px/1 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin:10px 0 7px;border-top:1px solid var(--rule);padding-top:9px}
+.lyrPanel .reset{font:400 11px var(--mono);color:var(--muted);background:none;border:0;padding:0;cursor:pointer;text-decoration:underline}
+.cityL{font:500 11px/1 var(--mono);color:var(--muted);white-space:nowrap;text-shadow:0 0 3px var(--bg),0 0 3px var(--bg),0 0 2px var(--bg);pointer-events:none}
+.cityL i{display:inline-block;width:4px;height:4px;border-radius:50%;background:var(--muted);margin-right:4px;vertical-align:1px}
+.clubL{font:600 11px/1 var(--mono);color:var(--fg);white-space:nowrap;text-shadow:0 0 3px var(--bg),0 0 3px var(--bg),0 0 3px var(--bg),0 0 2px var(--bg);pointer-events:none}
+.mapnote{background:color-mix(in srgb,var(--card) 92%,transparent);border:1px solid var(--border);border-radius:3px;padding:6px 9px;font:400 12px/1.35 var(--mono);max-width:min(300px,62vw);box-shadow:0 1px 4px rgba(0,0,0,.12)}
+.mapnote b{font-weight:600}
+.mapnote:empty{display:none}
+@media (max-width:600px){.mapnote{display:none}.leaflet-control-attribution{font-size:9px;max-width:100%}}
+.yrStamp{font:900 44px/1 var(--display);color:var(--fg);opacity:.16;pointer-events:none;letter-spacing:-.02em}
+@media (max-width:600px){.yrStamp{font-size:30px}}
+.leaflet-bar a,.leaflet-bar a:hover{background:var(--card);color:var(--fg);border-bottom-color:var(--border)}
+.leaflet-control-attribution{background:color-mix(in srgb,var(--card) 85%,transparent)!important;color:var(--muted)}
+.leaflet-control-attribution a{color:var(--fg)}
+.leaflet-popup-content-wrapper,.leaflet-popup-tip{background:var(--card);color:var(--fg)}
+.leaflet-popup-content{font:400 12.5px/1.5 var(--mono);margin:10px 12px}
+.leaflet-popup-content b{font-weight:600}
+.legend{display:flex;gap:6px 14px;flex-wrap:wrap;font:400 12px/1.3 var(--mono);color:var(--muted);margin-top:8px;align-items:center}
+.legend span{display:inline-flex;align-items:center}
+.legend i{display:inline-block;width:13px;height:13px;margin-right:6px;border-radius:50%;border:1px solid rgba(0,0,0,.15)}
+.legend .ramp{width:110px;height:10px;border-radius:2px;margin:0 6px;display:inline-block}
+.pull{font:600 26px/1.25 var(--display);border-left:6px solid var(--hot);padding:4px 0 4px 18px;margin:30px 0}
+.note{background:var(--panel);border:1px solid var(--rule);padding:14px 16px;font-size:16px;margin:22px 0}
+.cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin:20px 0}
+@media (max-width:760px){.cards{grid-template-columns:1fr 1fr}}
+@media (max-width:480px){.cards{grid-template-columns:1fr}}
+.card{background:var(--card);border:1px solid var(--border);border-left:8px solid var(--c,var(--hot));padding:12px 14px;font:400 13px/1.5 var(--mono)}
+.card b{font:600 19px/1.2 var(--display);display:block;margin-bottom:2px}
+.card .big{font:900 26px/1.05 var(--display);margin:6px 0 2px}
+.card .big span{color:var(--muted);font:400 13px/1 var(--mono)}
+.card button{margin-top:8px}
+table.list{width:100%;border-collapse:collapse;font:400 13px/1.4 var(--mono)}
+table.list th{font:500 11px/1.2 var(--mono);letter-spacing:.06em;text-transform:uppercase;color:var(--muted);text-align:left;border-bottom:2px solid var(--fg);padding:6px 6px 6px 0}
+table.list td{border-bottom:1px solid var(--rule);padding:6px 6px 6px 0;vertical-align:top}
+table.list td.num,table.list th.num{text-align:right}
+.tablewrap{max-height:460px;overflow:auto;border:1px solid var(--rule);padding:0 8px;background:var(--card)}
+details{margin:14px 0}
+summary{font:500 13px/1.4 var(--mono);cursor:pointer;color:var(--fg);padding:8px 0}
+.cta{display:flex;gap:10px;flex-wrap:wrap;margin:18px 0}
+.cta a{font:500 13px/1 var(--mono);text-decoration:none;border:1px solid var(--fg);padding:11px 14px;border-radius:3px}
+.cta a.p{background:var(--hot);border-color:var(--hot);color:#fff}
+footer{border-top:6px double var(--fg);margin-top:56px;padding-top:16px;font:400 13px/1.55 var(--mono);color:var(--muted)}
+footer p{margin:0 0 10px}
+.theme{position:fixed;right:12px;bottom:12px;z-index:1002}
+@media print{.theme,.controls{display:none}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<div class="kicker"><b>Data study</b><span>Football</span><span>England and Wales, 2026</span></div>
+<header class="hero">
+  <h1>Who was <span class="a">big</span> <span class="b">when?</span></h1>
+  <svg class="mark" viewBox="0 0 120 140" aria-hidden="true"><g id="heroMark"></g></svg>
+  <p class="dek">Every Football League and Premier League club, every season from {{data.first|raw}} to {{data.last|raw}}, placed on a map by where it plays, sized by its home crowd and coloured by where it finished. Lancashire and the Midlands at the start, the slow rise of London, the great post-war crowds, the long fall to the 1980s and the towns that lost their league club along the way.</p>
+</header>
+<div class="byline">Dr Tristan Hotham · Independent researcher · 2026 · Data: engsoccerdata (James P. Curley); englishfootballleaguetables.co.uk; openfootball; ONS; OS Open Names</div>
+
+<div class="stats">
+  <div><b class="h">{{x_peak_m}}m</b><span>league crowds in {{crowds.peak_season|raw}}, the most ever</span></div>
+  <div><b class="g">{{x_low_m}}m</b><span>in {{crowds.low_season|raw}}, the low point, {{x_fall_pct}} down</span></div>
+  <div><b class="c">{{x_last_m}}m</b><span>in {{crowds.last_season|raw}}, back to {{x_last_vs_peak}} of the peak</span></div>
+  <div><b>{{lost.n|int}}</b><span>towns that once had a league club and have none in {{lost.today|raw}}</span></div>
+</div>
+
+<p class="lede">Football's map of England has been redrawn several times. When the Football League kicked off in September 1888 its twelve clubs came from just two places: six from Lancashire and six from the Midlands. London had no league club at all until {{london.first_season|raw}}, and no league champion until {{champions.first_london|raw}}. In {{crowds.last_season|raw}} seven of the twenty Premier League clubs were from London, and the old mill towns that founded the game have mostly slipped down the divisions or out of the league altogether.</p>
+<p>To see how it happened I rebuilt the final table of every league season from all {{data.n_matches|int}} league matches since 1888 and joined each club's average home league crowd for every season it has been recorded. The map below puts the {{data.n_clubs|int}} clubs that have played in the league where they play. Press play, or drag the slider, and watch the big clubs move.</p>
+
+<h2><span class="n">01 · The map</span>Every league club, every season</h2>
+<div class="bleed" id="atlas">
+<div class="timebar">
+  <button class="play" id="play" aria-label="Play through the seasons"></button>
+  <div class="yr" id="yr" aria-live="polite">1888-89</div>
+  <div><input type="range" id="slider" min="0" max="1" step="1" value="0" aria-label="Season"><div class="speed" id="speedNote">Drag to choose a season, or press play.</div></div>
+</div>
+<div class="controls">
+  <div class="scrollrow" id="colRow"><span class="ctl-l">Colour</span><button class="btn" data-c="tier" aria-pressed="true">Division</button><button class="btn" data-c="rank" aria-pressed="false">League position</button></div>
+  <div class="scrollrow" id="jumpRow"><span class="ctl-l">Jump to</span></div>
+</div>
+<div class="controls">
+  <div class="searchbox"><input type="search" id="q" placeholder="Search a club or town" aria-label="Search a club or town" autocomplete="off"><ul class="suggest" id="sug" role="listbox"></ul></div>
+</div>
+<div class="mapgrid">
+  <div><div id="map" class="lmap" role="application" aria-label="Map of league clubs in England and Wales"></div>
+    <div class="legend" id="legend"></div></div>
+  <div class="side" id="side" aria-live="polite"></div>
+</div>
+<p class="src">Positions: final tables rebuilt from every match in engsoccerdata (2022-23 from openfootball). Crowds: average home league gate, from englishfootballleaguetables.co.uk. Circles sit at each club's present or last ground. No crowds for 2020-21 (played behind closed doors) or 2021-22 (missing from the source), so those seasons show every club at one size.</p>
+</div>
+
+<h2><span class="n">02 · The crowds</span>{{x_peak_m}} million, then a long fall</h2>
+<p>The first league season drew about {{x_first_k}} thousand people to its 132 matches. By {{crowds.pre1915_peak_season|raw}}, the last full season before the First World War, the league had grown to {{spot.1913.clubs|int}} clubs and {{x_prewar_m}} million paying spectators. After the war it grew again, to {{clubs_1923|int}} clubs in four divisions by 1923, and in the first seasons after the Second World War it reached a height it has never matched: <b>{{x_peak_m}} million</b> in {{crowds.peak_season|raw}}, an average of {{crowds.peak_avg|int}} a match across all four divisions.</p>
+<div class="figure"><p class="fig-h">Total league crowd, every season</p><p class="fig-sub">Sum over clubs of average home league gate times home league matches. Gaps: the two world wars, 2020-21 (no crowds) and 2021-22 (no data). Tap the chart to send the map to that season.</p><div class="chart" id="crowdChart"></div><div class="legend" id="crowdLegend"></div></div>
+<p>Then the long decline. Television, cars, other things to do on a Saturday, crumbling grounds, hooliganism and a run of disasters: crowds fell in {{crowds.n_decline_seasons|int}} of the next {{crowds.n_decline_span|int}} seasons, to <b>{{x_low_m}} million</b> in {{crowds.low_season|raw}}, {{x_fall_pct}} below the peak. The average top-flight crowd that season was {{crowds.low_top_avg|int}}. The recovery began in {{crowds.first_rise_after_low|raw}}, before Hillsborough, the all-seater grounds that followed it and the Premier League, and it has kept going: {{x_pl1_m}} million in {{crowds.pl1_season|raw}}, {{x_last_m}} million in {{crowds.last_season|raw}}. Only {{crowds.n_seasons_beating_last|int}} seasons, from {{crowds.first_season_beating_last|raw}} to {{crowds.last_season_beating_last|raw}}, saw more people at league matches than last season.</p>
+<p>The recovery has been top-heavy, though less than you might think. The average Premier League crowd has nearly doubled since 1992 ({{crowds.pl1_top_avg|int}} to {{crowds.last_top_avg|int}}), but the top flight's share of all league spectators, {{crowds.t1_share_last|pct0}}, is close to what it was in {{crowds.peak_season|raw}} ({{crowds.t1_share_peak|pct0}}). The other three divisions drew {{x_lower_last_m}} million last season against {{x_lower_peak_m}} million at the peak.</p>
+
+<h2><span class="n">03 · North and South</span>From the mill towns to London</h2>
+<p>In the league's first quarter century, before 1915, the North held {{balance.north_top_first|pct0}} of all top-flight places and the Midlands most of the rest; London and the South held {{balance.south_top_first|pct0}}. The North won {{champions.north_to_1914|int}} of the {{champions.n_to_1914|int}} titles before the First World War and the Midlands the other {{champions.midlands_to_1914|int}}. Since 2010 the North's share of top-flight places has fallen to {{balance.north_top_last|pct0}} and the South's, London included, has risen to {{balance.south_top_last|pct0}}. In {{crowds.last_season|raw}} the Premier League had {{balance.london_n_top_last|int}} London clubs, {{balance.south_n_top_last|int}} from the rest of the South, {{balance.mid_n_top_last|int}} from the Midlands and {{balance.north_n_top_last|int}} from the North.</p>
+<div class="figure"><p class="fig-h">Who holds the top-flight places</p><p class="fig-sub">Share of top-flight clubs each season by area (ONS regions: North is the North East, North West and Yorkshire and the Humber; Midlands is East and West Midlands; South is the East, South East and South West). Hover for a season.</p><div class="chart" id="balChart"></div><div class="legend" id="balLegend"></div></div>
+<p>The titles tell a slightly different story, because the North's great city clubs never went away: of all {{champions.n|int}} champions, {{champions.by_band.North|int}} came from the North, {{champions.by_band.London|int}} from London, {{champions.by_band.Midlands|int}} from the Midlands and {{champions.by_band.South (outside London)|int}} from the rest of the South. Since 2000-01 the North has won {{champions.north_since_2000|int}} of {{champions.n_since_2000|int}} titles, every one of them for Manchester or Liverpool. What the North has lost is depth: the Lancashire and Yorkshire towns that used to fill the top flight. Weighted by crowds, the centre of the top flight has moved about {{x_centre_km}} km south since the first era, from the edge of the Peak District near {{eras.0.centre_near|raw}} to near {{eras.5.centre_near|raw}} in Leicestershire.</p>
+<div class="figure"><p class="fig-h">Area shares by era</p><p class="fig-sub">Top-flight places, all league crowds and titles, by area and era.</p><div class="chart" id="eraChart"></div></div>
+
+<h2><span class="n">04 · The biggest crowd</span>Who drew the most, season by season</h2>
+<p>The club with the biggest average home crowd has changed hands less often than the title. Everton drew the biggest crowds in the league's first decade, then Aston Villa, then Newcastle and Chelsea traded places before the First World War. Arsenal held it through the 1930s. After the war it moved around Newcastle, Tottenham, Arsenal, Everton and the two Manchester and Merseyside giants, and since {{crowd_kings.man_utd_since|raw}} it has belonged every recorded season to Manchester United, who have had the biggest crowd in {{x_mu_kings}} seasons in all. The biggest average of all was {{crowd_kings.biggest.avg|int}} at Old Trafford in {{crowd_kings.biggest.season|raw}}.</p>
+<div class="figure"><p class="fig-h">The best-supported club each season</p><p class="fig-sub">Highest average home league gate in each season with crowd data. Hover for the club and crowd.</p><div class="chart" id="kingChart"></div></div>
+
+<h2><span class="n">05 · Lost</span>Towns that lost league football</h2>
+<p>{{lost.n_towns_ever|int}} towns and cities have had a league club at some point; {{lost.n_towns_last|int}} have one in {{lost.today|raw}}. That leaves <b>{{lost.n|int}} towns that lost league football</b> and have not got it back. Some went early: Darwen, Bootle, Northwich, Loughborough, Gainsborough and Glossop, who spent one season, {{lost.glossop.best_season|raw}}, in the top flight. Others went in the 1920s and 1930s, when the northern and southern third divisions turned over fast: Merthyr Tydfil, Aberdare, Ashington, Durham, Nelson, Stalybridge. And {{lost.since_2000|int}} have gone since 2000, among them Bury, expelled in 2019 after {{lost.most_seasons.seasons|int}} seasons, Rochdale, Hartlepool, Southend, Scunthorpe and, most recently, Carlisle and Morecambe. Barnet and Oldham, promoted back into League Two for {{lost.today|raw}}, are not on the list; Carlisle and Morecambe, relegated at the end of {{crowds.last_season|raw}}, are.</p>
+<div class="cta"><a href="#atlas" id="showLost">Show lost towns on the map</a></div>
+<div class="figure"><p class="fig-h">The {{lost.n|int}} towns</p><p class="fig-sub">Towns with a league club in some season and none in {{lost.today|raw}}, most recent first. Best: highest finish (division and position).</p><div class="tablewrap"><table class="list" id="lostTable"><thead><tr><th>Town</th><th>Club(s)</th><th class="num">Seasons</th><th>Last</th><th>Best</th></tr></thead><tbody></tbody></table></div></div>
+<p>A few have come back after long absences, which is why they are not on the list: Barrow, out of the league from 1972 to 2020, Newport County, Aldershot (a new club after the old one folded in 1992), Wrexham and Stockport County.</p>
+
+<h2><span class="n">06 · Peaks</span>When was your club big?</h2>
+<p>Search any club in the map above to see its whole history as a sparkline. Every club has a peak, and they are spread across the whole history of the league. Of the {{peaks.n_clubs_20|int}} clubs with at least twenty league seasons, {{peaks.by_decade.1890s|int}} had their best decade, by average league position, in the 1890s and {{peaks.by_decade.2020s|int}} are in it now. Preston's was the first, the Invincibles of 1888-89. Huddersfield won three titles in a row in the 1920s; Portsmouth won two straight after the Second World War; Wolves, Burnley, Ipswich and Derby were champions in the 1950s, 60s and 70s, and Nottingham Forest went from {{forest.pos_1976|raw}}rd in the second tier in 1976-77 to champions the next season.</p>
+<div class="figure"><p class="fig-h">Best decade, by club</p><p class="fig-sub">Decade with the best average league position (at least three seasons in it), for the {{peaks.n_clubs_20|int}} clubs with twenty or more league seasons. Hover a bar for the clubs.</p><div class="chart" id="peakChart"></div></div>
+<p class="pull">In {{crowds.peak_season|raw}} Hull City, in the third tier, drew bigger crowds than {{crowds.hull_1948_beat_top|int}} of the {{crowds.n_top_1948|int}} top-flight clubs.</p>
+
+<h2><span class="n">07 · How I did this</span>Methods and caveats</h2>
+<p><b>Tables.</b> Every final league table from {{data.first|raw}} to {{data.last|raw}} was rebuilt from match results in James Curley's engsoccerdata package ({{data.n_matches|int}} matches, with 2022-23, missing from the package, filled from openfootball's results). Two points for a win until 1980-81 and three from 1981-82; ties broken by goal average until 1975-76 and goal difference after; points deductions applied; 2019-20 in the third and fourth tiers decided on points per game as the league did. Records expunged when clubs left mid-season (Wigan Borough 1931-32, Accrington Stanley 1961-62) are left out, and Leeds City's 1919-20 matches are credited to Port Vale, who took them over. The rebuilt tables were checked against known champions and final places in more than fifty seasons. League position on the map is the club's place in the whole league: the number of clubs in higher divisions plus its position, so 1 is the champion and 92 bottom of the fourth tier.</p>
+<p><b>Crowds.</b> Average home league gates per club and season come from englishfootballleaguetables.co.uk, which compiles them from many sources; I matched its club names to engsoccerdata's season by season, allowing for old names such as Small Heath, Newton Heath and The Wednesday. {{data.n_unmatched|int}} names could not be matched, and all five are clubs whose records were expunged. Early gates, especially before 1925, are estimates, often from newspaper reports, and should be read as orders of magnitude. The total crowd is each club's average times its home league matches; cup and play-off matches are not counted. There are no crowds for 2020-21, played behind closed doors, and none for 2021-22, which is missing from my copy of the source.</p>
+<p><b>Places.</b> Each club is drawn at its present or last ground (from engsoccerdata), not at every ground it has played at, so Arsenal is in Islington even in 1893, when Woolwich Arsenal played in Plumstead. Areas are ONS regions; Chester, whose stadium straddles the border, counts as English. A town is the place a club stands for, so the London clubs share one town, London.</p>
+<p><b>What this is not.</b> League position and crowd are only two ways of being big. Cup runs, money, fame abroad and history are not here, and Welsh clubs are only those that played in the English league.</p>
+<details><summary>Sources and licences</summary>
+<ul>
+<li>engsoccerdata, James P. Curley (2016 and later), R package, https://github.com/jalapic/engsoccerdata. Match results are facts; the package code is GPL-3 and its author asks to be credited. Club coordinates from its club data table.</li>
+<li>openfootball/england, 2022-23 results, https://github.com/openfootball/england. Public domain (CC0).</li>
+<li>Average league gates: englishfootballleaguetables.co.uk. Only per-club, per-season averages derived from its tables are published here, with credit; the site's pages are not redistributed.</li>
+<li>Boundaries: ONS regions and counties (Open Government Licence v3.0). Town names: OS Open Names (Open Government Licence v3.0), as prepared for the dark-skies study.</li>
+<li>Base map tiles © Esri.</li>
+</ul></details>
+
+<div class="cta"><a class="p" href="https://doi.org/[[DOI]]">Read the paper</a><a href="[[BLOG_URL]]">Read the blog post</a><a href="https://github.com/Tristan-Hotham/who-was-big-when">Data and code</a></div>
+
+<footer>
+<p>Dr Tristan Hotham, Independent researcher. ORCID <a href="https://orcid.org/0000-0003-4931-9349">0000-0003-4931-9349</a>.</p>
+<p>Cite as: Hotham, T. (2026) Who was big when? League position and crowds of every English league club, {{data.first|raw}} to {{data.last|raw}}. Zenodo. <a href="https://doi.org/[[DOI]]">https://doi.org/[[DOI]]</a></p>
+<p>Licence: text, figures and derived data CC BY 4.0 (crowd figures credited to englishfootballleaguetables.co.uk; results from engsoccerdata and openfootball), code MIT.</p>
+<p>I wrote the text, with drafting and editing assistance from Claude (Anthropic), which also helped prepare the analysis code. I reviewed and checked all text and results.</p>
+</footer>
+</div>
+<div class="tip" id="tip"></div>
+<button class="btn theme" id="theme" aria-label="Toggle dark mode">◐</button>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+<script>
+/*DATA*/
+const fmt = n => n == null || n === "" ? "n/a" : Math.round(n).toLocaleString("en-GB");
+const esc = s => String(s ?? "").replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+const tip = document.getElementById("tip");
+function showTip(h, x, y) { tip.innerHTML = h; tip.style.display = "block"; const w = tip.offsetWidth; x = Math.max(w / 2 + 8, Math.min(innerWidth - w / 2 - 8, x)); tip.style.left = x + scrollX + "px"; tip.style.top = y + scrollY + "px"; }
+function hideTip() { tip.style.display = "none"; }
+document.addEventListener("click", hideTip);
+const NS = "http://www.w3.org/2000/svg";
+const el = (t, a, p) => { const e = document.createElementNS(NS, t); for (const k in a) e.setAttribute(k, a[k]); if (p) p.appendChild(e); return e; };
+const lbl = (svg, x, y, s, cls = "lab", anchor = "start") => { const t = el("text", { x, y, class: cls, "text-anchor": anchor }, svg); t.textContent = s; return t; };
+const redraws = [];
+function resp(box, render) { let last = 0; const go = force => { const w = Math.max(280, Math.round(box.clientWidth)); if (!force && Math.abs(w - last) < 4) return; last = w; box.innerHTML = ""; render(w, w < 560); }; new ResizeObserver(() => go()).observe(box); go(); redraws.push(() => go(true)); }
+const isDark = () => { const r = document.documentElement; return r.dataset.theme ? r.dataset.theme === "dark" : matchMedia("(prefers-color-scheme: dark)").matches; };
+const css = v => getComputedStyle(document.documentElement).getPropertyValue(v).trim();
+const small = () => innerWidth < 900;
+const SL = y => `${y}-${String(y + 1).slice(-2)}`;
+const TIERN = { 1: "Top flight", 2: "Second tier", 3: "Third tier", 4: "Fourth tier" };
+const DIVN = (y, t, d) => {
+  if (t === 1) return y >= 1992 ? "Premier League" : (y < 1892 ? "Football League" : "First Division");
+  if (t === 2) return y >= 2004 ? "Championship" : y >= 1992 ? "First Division" : "Second Division";
+  if (t === 3) return d === "3N" ? "Third Division North" : d === "3S" ? "Third Division South" : y >= 2004 ? "League One" : y >= 1992 ? "Second Division" : "Third Division";
+  return y >= 2004 ? "League Two" : y >= 1992 ? "Third Division" : "Fourth Division";
+};
+const theDiv = (y, t, d) => { const n = DIVN(y, t, d); return /^League (One|Two)$/.test(n) ? n : "the " + n; };
+const ord = n => n + (n % 100 >= 11 && n % 100 <= 13 ? "th" : ["th", "st", "nd", "rd"][n % 10] || "th");
+const tcol = t => css("--t" + t);
+const BANDC = { "North": "#9B1B30", "Midlands": "#D9752B", "London": "#2F5D8A", "South (outside London)": "#5FA0C8", "Wales": "#4C8A3E" };
+const BANDD = { "North": "#E06A7B", "Midlands": "#F0A060", "London": "#86AEDC", "South (outside London)": "#A8D3EE", "Wales": "#8CC27A" };
+const bcol = b => (isDark() ? BANDD : BANDC)[b];
+const BANDL = { "North": "North", "Midlands": "Midlands", "London": "London", "South (outside London)": "Rest of the South", "Wales": "Wales" };
+
+/* hero mark: a football split into the four tier colours */
+(function () {
+  const g = document.getElementById("heroMark"); const cx = 60, cy = 72, r = 50;
+  [1, 2, 3, 4].forEach((t, i) => { const a0 = -Math.PI / 2 + i * Math.PI / 2, a1 = a0 + Math.PI / 2;
+    el("path", { d: `M${cx} ${cy} L${cx + r * Math.cos(a0)} ${cy + r * Math.sin(a0)} A${r} ${r} 0 0 1 ${cx + r * Math.cos(a1)} ${cy + r * Math.sin(a1)} Z`, fill: `var(--t${t})` }, g); });
+  const pent = (x, y, s) => Array.from({ length: 5 }, (_, k) => { const a = -Math.PI / 2 + k * 2 * Math.PI / 5; return `${x + s * Math.cos(a)},${y + s * Math.sin(a)}`; }).join(" ");
+  el("polygon", { points: pent(cx, cy, 16), fill: "var(--bg)" }, g);
+  for (let k = 0; k < 5; k++) { const a = -Math.PI / 2 + k * 2 * Math.PI / 5; el("line", { x1: cx + 16 * Math.cos(a), y1: cy + 16 * Math.sin(a), x2: cx + r * Math.cos(a), y2: cy + r * Math.sin(a), stroke: "var(--bg)", "stroke-width": 3 }, g); }
+  el("circle", { cx, cy, r, fill: "none", stroke: "currentColor", "stroke-width": 3 }, g);
+})();
+
+/* ---------- state ---------- */
+let SITE = null, CLUBS = [], YEARS = [], BY = {}, TOT = {};
+const S = { i: 0, col: "tier", club: null, playing: false };
+
+/* ---------- map ---------- */
+const ESRI = "https://server.arcgisonline.com/ArcGIS/rest/services/";
+const ESRI_ATT = 'Tiles &copy; Esri, HERE, Garmin, USGS, NGA, &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, and the GIS user community';
+const LYDEF = { base: "plain", hills: true, hillK: 45, labels: false, labelK: 80, names: true, nameLvl: 1, borders: true, clubs: true, clubnames: true, lost: false };
+const LY = { ...LYDEF };
+try { Object.assign(LY, JSON.parse(localStorage.getItem("wwbw_layers") || "{}")); } catch (e) {}
+const saveLY = () => { try { localStorage.setItem("wwbw_layers", JSON.stringify(LY)); } catch (e) {} };
+const map = L.map("map", { minZoom: 5, maxZoom: 13, maxBounds: [[48.5, -9.5], [57, 4.5]], zoomSnap: .25, zoomDelta: .5 });
+const HOME = [[50.0, -5.6], [55.7, 1.8]];
+map.fitBounds(HOME, { padding: [4, 4] });
+["hills:250", "fill:400", "lost:560", "pts:600", "labels:450", "names:620"].forEach(s => { const [n, z] = s.split(":"); map.createPane(n); map.getPane(n).style.zIndex = z; });
+["hills", "labels", "names", "fill"].forEach(n => map.getPane(n).style.pointerEvents = "none");
+const canvas = L.canvas({ pane: "pts", padding: .3, tolerance: 3 });
+let base = null, hills = null, labels = null; const names = L.layerGroup().addTo(map), lostLayer = L.layerGroup();
+let border = null, TOWNS = [];
+function setTiles() {
+  [base, labels, hills].forEach(l => { if (l) map.removeLayer(l); });
+  const t = isDark() ? "Dark" : "Light";
+  const url = LY.base === "relief" ? ESRI + "World_Shaded_Relief/MapServer/tile/{z}/{y}/{x}" : LY.base === "satellite" ? ESRI + "World_Imagery/MapServer/tile/{z}/{y}/{x}" : LY.base === "streets" ? ESRI + "World_Street_Map/MapServer/tile/{z}/{y}/{x}" : `${ESRI}Canvas/World_${t}_Gray_Base/MapServer/tile/{z}/{y}/{x}`;
+  base = L.tileLayer(url, { maxZoom: 16, maxNativeZoom: LY.base === "relief" ? 13 : 16, attribution: ESRI_ATT }).addTo(map);
+  hills = L.tileLayer(ESRI + "Elevation/World_Hillshade/MapServer/tile/{z}/{y}/{x}", { maxZoom: 16, maxNativeZoom: 16, pane: "hills" });
+  labels = L.tileLayer(`${ESRI}Canvas/World_${t}_Gray_Reference/MapServer/tile/{z}/{y}/{x}`, { maxZoom: 16, pane: "labels" });
+  applyLayers();
+}
+function applyLayers() {
+  if (!base) return;
+  if (LY.hills) { hills.addTo(map); hills.setOpacity(Math.min(1, .12 + LY.hillK / 120)); } else map.removeLayer(hills);
+  if (LY.labels) { labels.addTo(map); labels.setOpacity(LY.labelK / 100); } else map.removeLayer(labels);
+  if (border) { if (LY.borders) border.addTo(map); else map.removeLayer(border); border.setStyle(bStyle()); }
+  if (LY.lost) lostLayer.addTo(map); else map.removeLayer(lostLayer);
+  drawSeason(); placeNames();
+}
+const bStyle = () => ({ color: isDark() ? "#5e574d" : "#b9ad98", weight: .7, fill: false, opacity: .9 });
+const markers = [];
+function radius(avg) { const z = map.getZoom(); const k = Math.pow(1.32, z - 6.5); return avg < 0 ? 4.2 * Math.sqrt(k) : Math.max(2.2, Math.sqrt(avg / 1000) * 2.05 * k); }
+function rankCol(rank, n) { const t = Math.min(1, (rank - 1) / Math.max(1, n - 1)); const a = isDark() ? [240, 200, 120] : [255, 214, 120], m = isDark() ? [224, 106, 123] : [196, 60, 60], b = isDark() ? [120, 70, 130] : [60, 24, 80];
+  const c = t < .5 ? a.map((x, i) => x + (m[i] - x) * t * 2) : m.map((x, i) => x + (b[i] - x) * (t - .5) * 2); return `rgb(${c.map(Math.round).join(",")})`; }
+function nTot(y) { return BY[y].length; }
+function clubFill(r, y) { return S.col === "tier" ? tcol(r[1]) : rankCol(r[3], nTot(y)); }
+function drawSeason() {
+  if (!SITE) return;
+  const y = YEARS[S.i]; const rows = BY[y]; const on = new Set();
+  rows.slice().sort((a, b) => b[4] - a[4]).forEach(r => {
+    const m = markers[r[0]]; on.add(r[0]);
+    const sel = S.club === r[0];
+    m.setLatLng([CLUBS[r[0]][2], CLUBS[r[0]][3]]);
+    m.setStyle({ radius: radius(r[4]), fillColor: clubFill(r, y), fillOpacity: .82, color: sel ? css("--fg") : (isDark() ? "#161513" : "#fff"), weight: sel ? 2.6 : .9, opacity: 1 });
+    m.__r = r;
+    if (LY.clubs && !map.hasLayer(m)) m.addTo(map);
+    if (sel) m.bringToFront();
+  });
+  markers.forEach((m, i) => { if ((!on.has(i) || !LY.clubs) && map.hasLayer(m)) map.removeLayer(m); });
+  document.getElementById("yr").textContent = SL(y);
+  stamp.textContent = SL(y);
+  note();
+  clubNames();
+}
+const clubLabels = L.layerGroup().addTo(map);
+function clubNames() {
+  clubLabels.clearLayers(); if (!SITE || !LY.clubnames || !LY.clubs) return;
+  const y = YEARS[S.i], z = map.getZoom(), bb = map.getBounds();
+  const gated = BY[y].some(r => r[4] > 0);
+  const rows = BY[y].slice().sort((a, b) => gated ? b[4] - a[4] : a[3] - b[3]);
+  const maxN = z < 6 ? 8 : z < 7 ? 14 : z < 8 ? 26 : 60, boxes = [];
+  let n = 0;
+  for (const r of rows) {
+    const c = CLUBS[r[0]]; if (!bb.contains([c[2], c[3]])) continue;
+    const p = map.latLngToContainerPoint([c[2], c[3]]), rad = radius(r[4]);
+    const nm = shortName(c[0]); const w = nm.length * 6.6 + 4;
+    const cand = [[p.x + rad + 3, p.y - 7], [p.x - rad - 3 - w, p.y - 7], [p.x - w / 2, p.y - rad - 16], [p.x - w / 2, p.y + rad + 2]];
+    const bx = cand.map(([x, yy]) => [x, yy, x + w, yy + 14]).find(b => !boxes.some(o => b[0] < o[2] && b[2] > o[0] && b[1] < o[3] && b[3] > o[1]));
+    if (!bx) continue; boxes.push(bx);
+    L.marker(map.containerPointToLatLng([bx[0], bx[1] + 7]), { pane: "names", interactive: false, keyboard: false, icon: L.divIcon({ className: "clubL", html: esc(nm), iconSize: null, iconAnchor: [0, 6] }) }).addTo(clubLabels);
+    if (++n >= maxN) break;
+  }
+  // circles themselves block names: remember their boxes for the place names
+  window.__clubBoxes = boxes;
+}
+const SHORT = { "Manchester United": "Man Utd", "Manchester City": "Man City", "Tottenham Hotspur": "Spurs", "Wolverhampton Wanderers": "Wolves", "West Bromwich Albion": "West Brom", "Sheffield Wednesday": "Sheff Wed", "Sheffield United": "Sheff Utd", "Nottingham Forest": "Forest", "Newcastle United": "Newcastle", "Queens Park Rangers": "QPR", "Brighton & Hove Albion": "Brighton", "Preston North End": "Preston", "Blackburn Rovers": "Blackburn", "Bolton Wanderers": "Bolton", "Huddersfield Town": "Huddersfield", "Leicester City": "Leicester", "Birmingham City": "Birmingham", "Leeds United": "Leeds", "Derby County": "Derby", "West Ham United": "West Ham", "Charlton Athletic": "Charlton", "Middlesbrough": "Boro", "Accrington Stanley (1891 club)": "Accrington Stanley" };
+const shortName = n => SHORT[n] || n.replace(/ (City|Town|United|County|Rovers|Athletic|Wanderers|Albion|Argyle|Alexandra|Orient)$/, "");
+function placeNames() {
+  names.clearLayers(); if (!LY.names || !TOWNS.length) return;
+  const z = map.getZoom(), bb = map.getBounds().pad(.05);
+  const lvl = LY.nameLvl; const showTown = z >= (lvl === 2 ? 7.5 : lvl === 1 ? 9 : 10.5);
+  const boxes = (window.__clubBoxes || []).slice(); let n = 0; const cap = lvl === 2 ? 110 : lvl === 1 ? 50 : 25;
+  if (SITE && LY.clubs) BY[YEARS[S.i]].forEach(r => { const c = CLUBS[r[0]], q = map.latLngToContainerPoint([c[2], c[3]]), rr = radius(r[4]); boxes.push([q.x - rr, q.y - rr, q.x + rr, q.y + rr]); });
+  for (const t of TOWNS) {
+    if (t.k === 1 && !showTown) continue; if (t.k === 0 && lvl === 0 && z < 7) continue;
+    if (!bb.contains([t.lat, t.lon])) continue;
+    const p = map.latLngToContainerPoint([t.lat, t.lon]);
+    const bx = [p.x - 3, p.y - 7, p.x + 9 + t.n.length * 6.2, p.y + 7];
+    if (boxes.some(o => bx[0] < o[2] && bx[2] > o[0] && bx[1] < o[3] && bx[3] > o[1])) continue;
+    boxes.push(bx);
+    L.marker([t.lat, t.lon], { pane: "labels", interactive: false, keyboard: false, icon: L.divIcon({ className: "cityL", html: `<i></i>${esc(t.n)}`, iconSize: null, iconAnchor: [3, 6] }) }).addTo(names);
+    if (++n >= cap) break;
+  }
+}
+map.on("zoomend", () => { drawSeason(); placeNames(); });
+map.on("moveend", () => { clubNames(); placeNames(); });
+(function layerControl() {
+  const Ctl = L.Control.extend({ options: { position: "topright" }, onAdd() {
+    const d = L.DomUtil.create("div"); L.DomEvent.disableClickPropagation(d); L.DomEvent.disableScrollPropagation(d);
+    d.innerHTML = `<button class="lyrBtn" aria-expanded="false">Map layers</button>
+<div class="lyrPanel" hidden>
+ <div class="row"><label style="font-weight:600">Base map</label><div class="sub"><select data-k="base" aria-label="Base map"><option value="plain">Plain grey</option><option value="streets">Streets</option><option value="relief">Shaded relief</option><option value="satellite">Satellite</option></select></div></div>
+ <div class="row"><label><input type="checkbox" data-k="hills"> Hills and moors</label><div class="sub"><span>strength</span><input type="range" data-k="hillK" min="10" max="100" step="5" aria-label="Hill shading strength"></div></div>
+ <div class="row"><label><input type="checkbox" data-k="labels"> Map labels</label><div class="sub"><span>strength</span><input type="range" data-k="labelK" min="20" max="100" step="5" aria-label="Map label strength"></div></div>
+ <div class="row"><label><input type="checkbox" data-k="names"> Town names</label><div class="sub"><span>how many</span><select data-k="nameLvl" aria-label="How many town names"><option value="0">Cities only</option><option value="1">Some towns</option><option value="2">Lots</option></select></div></div>
+ <div class="row"><label><input type="checkbox" data-k="borders"> County boundaries</label></div>
+ <div class="hd">Football</div>
+ <div class="row"><label><input type="checkbox" data-k="clubs"> League clubs</label></div>
+ <div class="row"><label><input type="checkbox" data-k="clubnames"> Club names</label><div class="sub">biggest crowds first</div></div>
+ <div class="row"><label><input type="checkbox" data-k="lost"> Towns that lost league football</label></div>
+ <button class="reset">Reset layers</button>
+</div>`;
+    return d; } });
+  map.addControl(new Ctl());
+  const box = map.getContainer(), btn = box.querySelector(".lyrBtn"), pan = box.querySelector(".lyrPanel");
+  btn.onclick = () => { const o = pan.hidden; pan.hidden = !o; btn.setAttribute("aria-expanded", o); };
+  const sync = () => pan.querySelectorAll("[data-k]").forEach(i => { const k = i.dataset.k; if (i.type === "checkbox") i.checked = LY[k]; else i.value = LY[k]; });
+  window.__syncLayers = sync;
+  pan.querySelectorAll("[data-k]").forEach(i => i.addEventListener(i.type === "range" ? "input" : "change", () => {
+    const k = i.dataset.k; LY[k] = i.type === "checkbox" ? i.checked : (k === "base" ? i.value : +i.value);
+    if (k === "hillK") LY.hills = true; if (k === "labelK") LY.labels = true; if (k === "nameLvl") LY.names = true;
+    sync(); saveLY(); if (k === "base") setTiles(); else applyLayers();
+  }));
+  pan.querySelector(".reset").onclick = () => { Object.assign(LY, LYDEF); saveLY(); sync(); setTiles(); };
+  sync();
+})();
+const Note = L.Control.extend({ options: { position: "bottomleft" }, onAdd() { const d = L.DomUtil.create("div", "mapnote"); d.id = "mapnote"; L.DomEvent.disableClickPropagation(d); return d; } });
+map.addControl(new Note());
+const Stamp = L.Control.extend({ options: { position: "topleft" }, onAdd() { const d = L.DomUtil.create("div", "yrStamp"); return d; } });
+const stampCtl = new Stamp(); map.addControl(stampCtl); const stamp = stampCtl.getContainer();
+L.control.scale({ imperial: true, metric: true, position: "bottomright" }).addTo(map);
+function note() {
+  const y = YEARS[S.i], d = document.getElementById("mapnote"); if (!d) return;
+  const t = TOT[y]; const ng = SITE.no_gates.includes(y);
+  d.innerHTML = ng ? `<b>${SL(y)}</b> · ${nTot(y)} clubs · ${y === 2020 ? "no crowds (behind closed doors)" : "no crowd data"}` : `<b>${SL(y)}</b> · ${nTot(y)} clubs · ${(t[1] / 1e6).toFixed(1)}m at league matches`;
+}
+
+/* ---------- side panel ---------- */
+function side() {
+  const box = document.getElementById("side"); if (!SITE) { box.innerHTML = "Loading..."; return; }
+  const y = YEARS[S.i];
+  if (S.club != null) return clubSide(box, S.club);
+  const rows = BY[y]; const t = TOT[y]; const champ = rows.find(r => r[1] === 1 && r[2] === 1);
+  const big = rows.filter(r => r[4] > 0).sort((a, b) => b[4] - a[4]).slice(0, 8);
+  const share = t[4]; const tiers = [1, 2, 3, 4].map(k => rows.filter(r => r[1] === k).length);
+  const ndiv = new Set(rows.map(r => r[5])).size;
+  let h = `<h4>Season</h4><div class="big">${SL(y)}</div><p class="sub">${rows.length} clubs in ${ndiv} division${ndiv === 1 ? "" : "s"}${SITE.no_gates.includes(y) ? "" : ` · ${(t[1] / 1e6).toFixed(1)} million at league matches, ${fmt(t[2])} a match`}</p>`;
+  h += `<p>Champions: <span class="go" data-c="${champ[0]}">${esc(CLUBS[champ[0]][0])}</span></p>`;
+  if (big.length) { h += `<h4>Biggest home crowds</h4><table>`; big.forEach((r, i) => h += `<tr><td>${i + 1}. <span class="sw" style="background:${tcol(r[1])}"></span><span class="go" data-c="${r[0]}">${esc(CLUBS[r[0]][0])}</span></td><td class="num">${fmt(r[4])}</td></tr>`); h += `</table>`; }
+  else h += `<p class="sub">No crowd figures for this season.</p>`;
+  h += `<h4>Top flight by area</h4>`;
+  SITE.bands.forEach((b, i) => { const n = rows.filter(r => r[1] === 1 && CLUBS[r[0]][4] && bandOf(CLUBS[r[0]][4]) === b).length; if (n) h += `<div><span class="sw" style="background:${bcol(b)}"></span>${esc(BANDL[b])}: ${n}</div>`; });
+  h += `<h4>Top flight</h4><table>`;
+  rows.filter(r => r[1] === 1).forEach(r => h += `<tr><td>${r[2]}. <span class="go" data-c="${r[0]}">${esc(CLUBS[r[0]][0])}</span></td><td class="num">${r[4] > 0 ? fmt(r[4]) : ""}</td></tr>`);
+  h += `</table><p class="sub">Tap a circle or search a club for its whole history.</p>`;
+  box.innerHTML = h; wire(box);
+}
+const bandOf = reg => ["North East", "North West", "Yorkshire and The Humber"].includes(reg) ? "North" : ["East Midlands", "West Midlands"].includes(reg) ? "Midlands" : reg === "London" ? "London" : reg === "Wales" ? "Wales" : "South (outside London)";
+function wire(box) { box.querySelectorAll(".go[data-c]").forEach(e => e.onclick = () => pickClub(+e.dataset.c, true)); const b = box.querySelector(".back"); if (b) b.onclick = () => { S.club = null; drawSeason(); side(); }; box.querySelectorAll("[data-y]").forEach(e => e.onclick = () => setYear(+e.dataset.y)); }
+function history(ci) { const h = []; YEARS.forEach(y => { const r = BY[y].find(r => r[0] === ci); if (r) h.push([y, ...r.slice(1)]); }); return h; }
+function clubSide(box, ci) {
+  const c = CLUBS[ci], hs = history(ci), pk = SITE.peaks[ci], y = YEARS[S.i];
+  const now = hs.find(r => r[0] === y);
+  let h = `<button class="back">Back to the season</button><div class="big">${esc(c[0])}</div><p class="sub">${esc(c[1])} · ${esc(c[5])} · ${hs.length} league season${hs.length === 1 ? "" : "s"}, ${SL(hs[0][0])} to ${SL(hs[hs.length - 1][0])}</p>`;
+  h += `<p>${now ? `In ${SL(y)}: <b>${ord(now[2])}</b> in ${esc(theDiv(y, now[1], now[5]))}${now[4] > 0 ? `, average home crowd <b>${fmt(now[4])}</b>` : ""}.` : `Not in the league in ${SL(y)}.`}</p>`;
+  h += `<div class="spark" id="spark"></div>`;
+  h += `<h4>Peak</h4><table><tr><td>Best finish</td><td class="num">${ord(pk[2])}, ${esc(TIERN[pk[1]].toLowerCase())}, <span class="go" data-y="${+pk[0].slice(0, 4)}">${pk[0]}</span></td></tr><tr><td>Best decade</td><td class="num">${pk[3]}</td></tr>${pk[4] ? `<tr><td>Biggest crowd</td><td class="num">${fmt(pk[4])}, <span class="go" data-y="${+pk[5].slice(0, 4)}">${pk[5]}</span></td></tr>` : ""}<tr><td>Titles</td><td class="num">${pk[6]}</td></tr><tr><td>Top-flight seasons</td><td class="num">${pk[7]}</td></tr></table>`;
+  box.innerHTML = h; wire(box); spark(document.getElementById("spark"), hs, ci);
+}
+function spark(box, hs, ci) {
+  const w = Math.max(260, box.clientWidth || 300), H = 160, hC = 46, top = 18, x0 = 30, x1 = w - 6, y0 = top, y1 = top + H - hC - 18;
+  const svg = el("svg", { viewBox: `0 0 ${w} ${H + 6}`, role: "img", "aria-label": "League position and crowd by season" }, box);
+  const X = y => x0 + (x1 - x0) * (y - YEARS[0]) / (YEARS[YEARS.length - 1] - YEARS[0]);
+  const Y = r => y0 + (y1 - y0) * (r - 1) / 91;
+  [[1, "1"], [21, "21"], [45, "45"], [69, "69"], [92, "92"]].forEach(([r, t]) => { el("line", { x1: x0, x2: x1, y1: Y(r), y2: Y(r), stroke: css("--rule") }, svg); lbl(svg, x0 - 4, Y(r) + 4, t, "lab s m", "end"); });
+  [1900, 1950, 2000].forEach(yy => lbl(svg, X(yy), H + 4, yy, "lab s m", "middle"));
+  let d = "", prev = null;
+  hs.forEach(r => { const gap = prev && r[0] - prev > 1; d += (d === "" || gap ? "M" : "L") + X(r[0]).toFixed(1) + " " + Y(r[3]).toFixed(1); prev = r[0]; });
+  el("path", { d, fill: "none", stroke: css("--fg"), "stroke-width": 1.6 }, svg);
+  hs.forEach(r => el("circle", { cx: X(r[0]), cy: Y(r[3]), r: 1.6, fill: tcol(r[1]) }, svg));
+  const maxA = Math.max(...hs.map(r => r[4]), 1), cb = H - 14;
+  hs.forEach(r => { if (r[4] > 0) { const hh = (hC - 6) * r[4] / maxA; el("rect", { x: X(r[0]) - .9, y: cb - hh, width: 1.8, height: hh, fill: tcol(r[1]), opacity: .8 }, svg); } });
+  lbl(svg, x0, cb - hC + 8, `crowd (max ${fmt(maxA)})`, "lab s m"); lbl(svg, x0, y0 - 8, "league position (1 = champions)", "lab s m");
+  const yy = YEARS[S.i]; el("line", { x1: X(yy), x2: X(yy), y1: y0, y2: cb, stroke: css("--hot"), "stroke-dasharray": "3 2" }, svg);
+  svg.addEventListener("click", e => { const r = svg.getBoundingClientRect(); const yr = Math.round(YEARS[0] + (e.clientX - r.left) / r.width * w / (x1 - x0) * (YEARS[YEARS.length - 1] - YEARS[0]) - x0 / (x1 - x0) * (YEARS[YEARS.length - 1] - YEARS[0])); const nearest = YEARS.reduce((a, b) => Math.abs(b - yr) < Math.abs(a - yr) ? b : a); setYear(nearest); });
+}
+function popupHtml(ci) {
+  const c = CLUBS[ci], y = YEARS[S.i], r = BY[y].find(r => r[0] === ci), pk = SITE.peaks[ci];
+  if (!r) return `<b>${esc(c[0])}</b><br>Not in the league in ${SL(y)}`;
+  return `<b>${esc(c[0])}</b>${c[1] !== c[0] ? " · " + esc(c[1]) : ""}<br>${SL(y)}: ${ord(r[2])} in ${esc(theDiv(y, r[1], r[5]))}<br>${r[4] > 0 ? "Average home crowd " + fmt(r[4]) : "No crowd figure"}<br><span style="opacity:.75">League position ${r[3]} of ${nTot(y)} · best ever: ${ord(pk[2])} ${TIERN[pk[1]].toLowerCase()}, ${pk[0]}</span>`;
+}
+function pickClub(ci, fly) {
+  S.club = ci; drawSeason(); side();
+  const c = CLUBS[ci]; const m = markers[ci];
+  if (fly) { map.setView([c[2], c[3]], Math.max(map.getZoom(), 8)); }
+  if (map.hasLayer(m)) m.bindPopup(popupHtml(ci), { maxWidth: 280 }).openPopup();
+  if (small()) document.getElementById("map").scrollIntoView({ behavior: "smooth", block: "start" });
+}
+
+/* ---------- time ---------- */
+const slider = document.getElementById("slider"), playBtn = document.getElementById("play");
+const ICON_PLAY = '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 4l13 8-13 8z"/></svg>', ICON_PAUSE = '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M6 4h4v16H6zM14 4h4v16h-4z"/></svg>';
+playBtn.innerHTML = ICON_PLAY;
+function setYear(y) { const i = YEARS.indexOf(y); if (i < 0) return; S.i = i; slider.value = i; drawSeason(); side(); redrawCursor(); }
+slider.addEventListener("input", () => { S.i = +slider.value; drawSeason(); side(); redrawCursor(); });
+let timer = null;
+function play(on) { S.playing = on; playBtn.innerHTML = on ? ICON_PAUSE : ICON_PLAY; playBtn.setAttribute("aria-label", on ? "Pause" : "Play through the seasons");
+  clearInterval(timer); if (on) { if (S.i >= YEARS.length - 1) { S.i = 0; } timer = setInterval(() => { if (S.i >= YEARS.length - 1) { play(false); return; } S.i++; slider.value = S.i; drawSeason(); side(); redrawCursor(); }, 420); } }
+playBtn.onclick = () => play(!S.playing);
+document.querySelectorAll("#colRow .btn").forEach(b => b.onclick = () => { S.col = b.dataset.c; document.querySelectorAll("#colRow .btn").forEach(x => x.setAttribute("aria-pressed", x === b)); drawSeason(); legend(); });
+function legend() {
+  const box = document.getElementById("legend");
+  let h = S.col === "tier" ? [1, 2, 3, 4].map(t => `<span><i style="background:${tcol(t)}"></i>${TIERN[t]}</span>`).join("") :
+    `<span>League position: 1st</span><span class="ramp" style="background:linear-gradient(90deg,${[0, .25, .5, .75, 1].map(t => rankCol(1 + t * 91, 92)).join(",")})"></span><span>bottom of the league</span>`;
+  h += `<span style="margin-left:6px">Circle area: average home crowd</span>`;
+  if (LY.lost) h += `<span><i style="background:transparent;border:2px solid ${css("--fg")}"></i>Town that lost league football</span>`;
+  box.innerHTML = h;
+}
+const JUMPS = [[1888, "1888-89: the first season"], [1913, "1913-14"], [1930, "1930-31"], [1948, "1948-49: the peak"], [1966, "1966-67"], [1985, "1985-86: the low"], [1992, "1992-93: the Premier League"], [SITE_LAST(), "Now"]];
+function SITE_LAST() { return /*LAST*/0; }
+const jr = document.getElementById("jumpRow");
+JUMPS.forEach(([y, t]) => { const b = document.createElement("button"); b.className = "btn"; b.textContent = t; b.onclick = () => { play(false); setYear(y); }; jr.appendChild(b); });
+
+/* ---------- search ---------- */
+(function search() {
+  const q = document.getElementById("q"), sug = document.getElementById("sug"); let items = [], sel = -1;
+  const show = () => { sug.innerHTML = items.map((it, i) => `<li role="option" aria-selected="${i === sel}" data-i="${i}">${esc(it.n)} <span>${esc(it.s)}</span></li>`).join(""); sug.style.display = items.length ? "block" : "none"; sug.querySelectorAll("li").forEach(li => li.onmousedown = e => { e.preventDefault(); go(items[+li.dataset.i]); }); };
+  const go = it => { q.value = it.n; items = []; show(); if (it.c != null) { const hs = history(it.c); if (!BY[YEARS[S.i]].some(r => r[0] === it.c)) setYear(hs[hs.length - 1][0]); pickClub(it.c, true); } };
+  q.addEventListener("input", () => {
+    const v = q.value.trim().toLowerCase(); sel = -1; if (!v || !SITE) { items = []; show(); return; }
+    const out = [];
+    CLUBS.forEach((c, i) => { const n = c[0].toLowerCase(), t = c[1].toLowerCase(); if (n.includes(v) || t.startsWith(v)) out.push({ n: c[0], s: `${c[1]} · ${SL(history(i)[0][0])} to ${SL(history(i).slice(-1)[0][0])}`, c: i, sc: n.startsWith(v) ? 0 : t.startsWith(v) ? 1 : 2 }); });
+    items = out.sort((a, b) => a.sc - b.sc || a.n.localeCompare(b.n)).slice(0, 12); show();
+  });
+  q.addEventListener("keydown", e => { if (e.key === "ArrowDown") { sel = Math.min(items.length - 1, sel + 1); show(); e.preventDefault(); } else if (e.key === "ArrowUp") { sel = Math.max(0, sel - 1); show(); e.preventDefault(); } else if (e.key === "Enter" && items.length) { go(items[Math.max(0, sel)]); } else if (e.key === "Escape") { items = []; show(); } });
+  q.addEventListener("blur", () => setTimeout(() => { items = []; show(); }, 150));
+})();
+
+/* ---------- charts ---------- */
+let cursorFns = [];
+function redrawCursor() { cursorFns.forEach(f => f()); }
+function timeAxis(svg, X, y, w, sm) { [1890, 1910, 1930, 1950, 1970, 1990, 2010].forEach(yy => { if (sm && (yy - 1890) % 40) return; lbl(svg, X(yy), y, yy, "lab s m", "middle"); }); }
+function crowdChart() {
+  const box = document.getElementById("crowdChart");
+  resp(box, (w, sm) => {
+    const H = sm ? 230 : 300, x0 = sm ? 34 : 44, x1 = w - 8, y0 = 10, y1 = H - 26;
+    const svg = el("svg", { viewBox: `0 0 ${w} ${H}`, role: "img", "aria-label": "Line chart of total league crowds by season, 1888 to 2025" }, box);
+    const X = y => x0 + (x1 - x0) * (y - 1888) / (2025 - 1888), max = 45e6, Y = v => y1 - (y1 - y0) * v / max;
+    [0, 10, 20, 30, 40].forEach(m => { el("line", { x1: x0, x2: x1, y1: Y(m * 1e6), y2: Y(m * 1e6), stroke: css("--rule") }, svg); lbl(svg, x0 - 6, Y(m * 1e6) + 4, m + "m", "lab s m", "end"); });
+    timeAxis(svg, X, H - 6, w, sm);
+    [[1915, 1918], [1939, 1945]].forEach(([a, b]) => { el("rect", { x: X(a), y: y0, width: X(b + 1) - X(a), height: y1 - y0, fill: css("--panel") }, svg); });
+    // stacked by tier
+    const rows = SITE.tot.filter(r => r[1] != null);
+    const segs = []; let cur = [];
+    rows.forEach((r, i) => { if (i && r[0] - rows[i - 1][0] > 1) { segs.push(cur); cur = []; } cur.push(r); }); segs.push(cur);
+    const tierTot = {}; SITE.tot.forEach(r => tierTot[r[0]] = [0, ...r[5]]);
+    segs.forEach(sg => {
+      let lower = sg.map(() => 0);
+      [1, 2, 3, 4].forEach(t => {
+        const up = sg.map((r, i) => lower[i] + tierTot[r[0]][t]);
+        const d = sg.map((r, i) => `${i ? "L" : "M"}${X(r[0] + .5).toFixed(1)} ${Y(up[i]).toFixed(1)}`).join("") + sg.slice().reverse().map((r, j) => `L${X(r[0] + .5).toFixed(1)} ${Y(lower[sg.length - 1 - j]).toFixed(1)}`).join("") + "Z";
+        el("path", { d, fill: tcol(t), opacity: .82 }, svg); lower = up;
+      });
+      el("path", { d: sg.map((r, i) => `${i ? "L" : "M"}${X(r[0] + .5).toFixed(1)} ${Y(r[1]).toFixed(1)}`).join(""), fill: "none", stroke: css("--fg"), "stroke-width": 1.4 }, svg);
+    });
+    const pk = rows.find(r => r[0] === 1948), lo = rows.find(r => r[0] === 1985), la = rows[rows.length - 1];
+    [[pk, `${(pk[1] / 1e6).toFixed(1)}m in 1948-49`, "end", -6], [lo, `${(lo[1] / 1e6).toFixed(1)}m in 1985-86`, "middle", 0], [la, `${(la[1] / 1e6).toFixed(1)}m`, "end", 0]].forEach(([r, t, a, dx]) => {
+      el("circle", { cx: X(r[0] + .5), cy: Y(r[1]), r: 3.5, fill: css("--fg") }, svg); lbl(svg, X(r[0] + .5) + dx, r === lo ? Y(r[1]) + 18 : Y(r[1]) - 9, t, "lab b", a); });
+    const cur2 = el("line", { y1: y0, y2: y1, stroke: css("--hot"), "stroke-width": 1.5, "stroke-dasharray": "3 2" }, svg);
+    const ct = lbl(svg, 0, y0 + 10, "", "lab s b", "start");
+    const place = () => { const y = YEARS[S.i]; cur2.setAttribute("x1", X(y + .5)); cur2.setAttribute("x2", X(y + .5)); ct.setAttribute("x", X(y + .5) + 4); ct.textContent = SL(y); };
+    cursorFns.push(place); place();
+    const hit = el("rect", { x: x0, y: y0, width: x1 - x0, height: y1 - y0, fill: "transparent", style: "cursor:pointer" }, svg);
+    const yOf = e => { const r = svg.getBoundingClientRect(); return Math.round(1888 + ((e.clientX - r.left) * w / r.width - x0) / (x1 - x0) * (2025 - 1888) - .5); };
+    hit.addEventListener("mousemove", e => { const y = yOf(e), r = SITE.tot.find(r => r[0] === y); showTip(r ? (r[1] ? `<b>${SL(y)}</b><br>${(r[1] / 1e6).toFixed(2)} million at league matches<br>${fmt(r[2])} a match; top flight ${fmt(r[3])}` : `<b>${SL(y)}</b><br>No crowd figures`) : `<b>${y}</b><br>No league football`, e.clientX, e.clientY); });
+    hit.addEventListener("mouseleave", hideTip);
+    hit.addEventListener("click", e => { const y = yOf(e); if (BY[y]) { play(false); setYear(y); document.getElementById("atlas").scrollIntoView({ behavior: "smooth" }); } });
+  });
+  document.getElementById("crowdLegend").innerHTML = [1, 2, 3, 4].map(t => `<span><i style="background:${tcol(t)};border-radius:2px"></i>${TIERN[t]}</span>`).join("") + `<span><i style="background:${css("--panel")};border-radius:2px"></i>War, no league</span>`;
+}
+function balChart() {
+  const box = document.getElementById("balChart");
+  resp(box, (w, sm) => {
+    const H = sm ? 220 : 270, x0 = sm ? 34 : 44, x1 = w - 8, y0 = 8, y1 = H - 26;
+    const svg = el("svg", { viewBox: `0 0 ${w} ${H}`, role: "img", "aria-label": "Stacked area chart of top-flight places by area" }, box);
+    const X = y => x0 + (x1 - x0) * (y - 1888) / (2025 - 1888), Y = v => y1 - (y1 - y0) * v;
+    const rows = SITE.tot; const segs = []; let cur = [];
+    rows.forEach((r, i) => { if (i && r[0] - rows[i - 1][0] > 1) { segs.push(cur); cur = []; } cur.push(r); }); segs.push(cur);
+    segs.forEach(sg => { let lower = sg.map(() => 0);
+      SITE.bands.forEach((b, k) => { const up = sg.map((r, i) => lower[i] + r[4][k]);
+        const d = sg.map((r, i) => `${i ? "L" : "M"}${X(r[0]).toFixed(1)} ${Y(up[i]).toFixed(1)}`).join("") + `L${X(sg[sg.length - 1][0] + 1).toFixed(1)} ${Y(up[sg.length - 1]).toFixed(1)}L${X(sg[sg.length - 1][0] + 1).toFixed(1)} ${Y(lower[sg.length - 1]).toFixed(1)}` + sg.slice().reverse().map((r, j) => `L${X(r[0]).toFixed(1)} ${Y(lower[sg.length - 1 - j]).toFixed(1)}`).join("") + "Z";
+        el("path", { d, fill: bcol(b), opacity: .9 }, svg); lower = up; }); });
+    [0, .25, .5, .75, 1].forEach(v => { el("line", { x1: x0, x2: x1, y1: Y(v), y2: Y(v), stroke: css("--bg"), "stroke-opacity": .6 }, svg); lbl(svg, x0 - 6, Y(v) + 4, Math.round(v * 100) + "%", "lab s m", "end"); });
+    timeAxis(svg, X, H - 6, w, sm);
+    const cur2 = el("line", { y1: y0, y2: y1, stroke: css("--fg"), "stroke-width": 1.5, "stroke-dasharray": "3 2" }, svg);
+    const place = () => { const y = YEARS[S.i]; cur2.setAttribute("x1", X(y + .5)); cur2.setAttribute("x2", X(y + .5)); }; cursorFns.push(place); place();
+    const hit = el("rect", { x: x0, y: y0, width: x1 - x0, height: y1 - y0, fill: "transparent", style: "cursor:pointer" }, svg);
+    const yOf = e => { const r = svg.getBoundingClientRect(); return Math.floor(1888 + ((e.clientX - r.left) * w / r.width - x0) / (x1 - x0) * (2025 - 1888)); };
+    hit.addEventListener("mousemove", e => { const y = yOf(e), r = SITE.tot.find(r => r[0] === y); if (!r) { showTip(`<b>${y}</b><br>No league football`, e.clientX, e.clientY); return; }
+      const n = BY[y].filter(q => q[1] === 1).length; showTip(`<b>${SL(y)}</b> · ${n} top-flight clubs<br>` + SITE.bands.map((b, k) => `${esc(BANDL[b])}: ${Math.round(r[4][k] * n)}`).join("<br>"), e.clientX, e.clientY); });
+    hit.addEventListener("mouseleave", hideTip);
+    hit.addEventListener("click", e => { const y = yOf(e); if (BY[y]) { play(false); setYear(y); } });
+  });
+  document.getElementById("balLegend").innerHTML = SITE.bands.map(b => `<span><i style="background:${bcol(b)};border-radius:2px"></i>${esc(BANDL[b])}</span>`).join("");
+}
+function eraChart() {
+  const box = document.getElementById("eraChart");
+  resp(box, (w, sm) => {
+    const E = R.eras, rh = 18, gap = 34, lw = 58, H = E.length * (3 * rh + gap) + 10, x0 = lw, x1 = w - 4;
+    const svg = el("svg", { viewBox: `0 0 ${w} ${H}`, role: "img", "aria-label": "Area shares of top-flight places, crowds and titles by era" }, box);
+    E.forEach((e, i) => { const yb = 22 + i * (3 * rh + gap);
+      lbl(svg, 0, yb - 6, e.label, "lab b");
+      [["top", "places"], ["crowd", "crowds"], ["champs", "titles"]].forEach(([k, t], j) => {
+        const y = yb + j * rh; let x = x0; const tot = k === "champs" ? e.n_champs : 1;
+        lbl(svg, x0 - 6, y + 13, t, "lab s m", "end");
+        SITE.bands.forEach(b => { const v = (e[k][b] || 0) / tot; const ww = (x1 - x0) * v; if (ww <= 0) return;
+          const r = el("rect", { x, y: y + 2, width: ww, height: rh - 4, fill: bcol(b) }, svg);
+          r.addEventListener("mousemove", ev => showTip(`<b>${esc(e.label)}</b> · ${t}<br>${esc(BANDL[b])}: ${k === "champs" ? e[k][b] + " of " + e.n_champs : Math.round(v * 100) + "%"}`, ev.clientX, ev.clientY)); r.addEventListener("mouseleave", hideTip);
+          if (ww > 30) { const tt = lbl(svg, x + 4, y + 13, k === "champs" ? e[k][b] : Math.round(v * 100) + "%", "lab s"); tt.style.fill = "#fff"; tt.style.pointerEvents = "none"; }
+          x += ww; }); }); });
+  });
+}
+function kingChart() {
+  const box = document.getElementById("kingChart");
+  resp(box, (w, sm) => {
+    const H = sm ? 200 : 230, x0 = sm ? 34 : 44, x1 = w - 8, y0 = 10, y1 = H - 26;
+    const svg = el("svg", { viewBox: `0 0 ${w} ${H}`, role: "img", "aria-label": "Highest average home crowd each season" }, box);
+    const X = y => x0 + (x1 - x0) * (y - 1888) / (2025 - 1888), Y = v => y1 - (y1 - y0) * v / 80000;
+    [0, 20, 40, 60, 80].forEach(m => { el("line", { x1: x0, x2: x1, y1: Y(m * 1000), y2: Y(m * 1000), stroke: css("--rule") }, svg); lbl(svg, x0 - 6, Y(m * 1000) + 4, m + "k", "lab s m", "end"); });
+    timeAxis(svg, X, H - 6, w, sm);
+    const KC = { "Manchester United": "#C8102E", "Arsenal": "#E5862B", "Everton": "#274488", "Chelsea": "#3A6FC4", "Newcastle United": "#222222", "Liverpool": "#3B8C4F", "Aston Villa": "#7A2650", "Tottenham Hotspur": "#8A8F99", "Manchester City": "#6CABDD" };
+    const KD = { "Newcastle United": "#d8d2c6" };
+    const used = new Set();
+    YEARS.forEach(y => { const big = BY[y].filter(r => r[4] > 0).sort((a, b) => b[4] - a[4])[0]; if (!big) return; const nm = CLUBS[big[0]][0]; used.add(nm);
+      const c = (isDark() && KD[nm]) || KC[nm] || "#999";
+      const r = el("rect", { x: X(y) + .3, y: Y(big[4]), width: Math.max(1.5, X(y + 1) - X(y) - .6), height: y1 - Y(big[4]), fill: c }, svg);
+      r.addEventListener("mousemove", e => showTip(`<b>${SL(y)}</b><br>${esc(nm)}: ${fmt(big[4])}`, e.clientX, e.clientY)); r.addEventListener("mouseleave", hideTip);
+      r.style.cursor = "pointer"; r.addEventListener("click", () => { play(false); setYear(y); }); });
+    const lg = document.createElement("div"); lg.className = "legend";
+    lg.innerHTML = Object.keys(KC).filter(k => used.has(k)).map(k => `<span><i style="background:${(isDark() && KD[k]) || KC[k]};border-radius:2px"></i>${esc(k)}</span>`).join("") + `<span><i style="background:#999;border-radius:2px"></i>Other</span>`;
+    box.appendChild(lg);
+  });
+}
+function peakChart() {
+  const box = document.getElementById("peakChart");
+  const P = SITE.peakList; const decs = Object.keys(R.peaks.by_decade);
+  resp(box, (w, sm) => {
+    const H = 210, x0 = 4, x1 = w - 4, y0 = 18, y1 = H - 24, bw = (x1 - x0) / decs.length, max = Math.max(...Object.values(R.peaks.by_decade));
+    const svg = el("svg", { viewBox: `0 0 ${w} ${H}`, role: "img", "aria-label": "Number of clubs whose best decade was each decade" }, box);
+    decs.forEach((d, i) => { const n = R.peaks.by_decade[d], h = (y1 - y0) * n / max, x = x0 + i * bw;
+      const r = el("rect", { x: x + 3, y: y1 - h, width: bw - 6, height: h, fill: css("--hot"), opacity: .85 }, svg);
+      lbl(svg, x + bw / 2, y1 - h - 5, n, "lab b", "middle"); lbl(svg, x + bw / 2, H - 6, sm ? "'" + d.slice(2, 4) : d, "lab s m", "middle");
+      const who = P.filter(p => p[1] === d).map(p => p[0]);
+      r.addEventListener("mousemove", e => showTip(`<b>${d}</b><br>${esc(who.join(", "))}`, e.clientX, e.clientY)); r.addEventListener("mouseleave", hideTip); });
+  });
+}
+function lostTable() {
+  const tb = document.querySelector("#lostTable tbody");
+  tb.innerHTML = SITE.lost.map(x => `<tr><td><b>${esc(x[0])}</b></td><td>${esc(x[8])}</td><td class="num">${x[4]}</td><td>${x[3]}</td><td>${esc(TIERN[x[5]].replace(" tier", ""))}, ${ord(x[6])}</td></tr>`).join("");
+  SITE.lost.forEach(x => { const m = L.circleMarker([x[1], x[2]], { pane: "lost", radius: 7, color: css("--fg"), weight: 2, fill: true, fillOpacity: 0, dashArray: "3 2" });
+    m.bindPopup(`<b>${esc(x[0])}</b><br>${esc(x[8])}<br>${x[4]} league season${x[4] === 1 ? "" : "s"}, last in ${x[3]}<br>Best: ${ord(x[6])} in the ${esc(TIERN[x[5]].toLowerCase())}, ${x[7]}`);
+    m.addTo(lostLayer); });
+  document.getElementById("showLost").onclick = e => { LY.lost = true; saveLY(); window.__syncLayers(); applyLayers(); legend(); map.fitBounds(HOME); };
+}
+
+/* ---------- start ---------- */
+document.getElementById("theme").onclick = () => { const r = document.documentElement; r.dataset.theme = isDark() ? "light" : "dark"; setTiles(); legend(); redraws.forEach(f => f()); side(); };
+setTiles(); legend(); side();
+Promise.all([fetch("data/site.json").then(r => r.json()), fetch("data/england_wales.geojson").then(r => r.json()), fetch("data/towns.json").then(r => r.json())]).then(([s, g, t]) => {
+  SITE = s; CLUBS = s.clubs; YEARS = Object.keys(s.seasons).map(Number).sort((a, b) => a - b); YEARS.forEach(y => BY[y] = s.seasons[y]); s.tot.forEach(r => TOT[r[0]] = r);
+  TOWNS = t.sort((a, b) => a.k - b.k);
+  slider.max = YEARS.length - 1;
+  CLUBS.forEach((c, i) => { const m = L.circleMarker([c[2], c[3]], { renderer: canvas, radius: 3 }); m.on("click", () => { S.club = i; drawSeason(); side(); m.bindPopup(popupHtml(i), { maxWidth: 280 }).openPopup(); }); m.on("mouseover", e => { if (!small()) { const r = map.getContainer().getBoundingClientRect(); showTip(popupHtml(i), r.left + e.containerPoint.x, r.top + e.containerPoint.y); } }); m.on("mouseout", hideTip); markers.push(m); });
+  border = L.geoJSON(g, { pane: "fill", style: bStyle, interactive: false });
+  setYear(1888); applyLayers(); crowdChart(); balChart(); eraChart(); kingChart(); peakChart(); lostTable(); legend();
+  const hash = location.hash.match(/season=(\d{4})/); if (hash) setYear(+hash[1]);
+}).catch(e => { document.getElementById("side").textContent = "Could not load the map data."; console.error(e); });
+</script>
+/*FULLSCREEN*/
+</body>
+</html>

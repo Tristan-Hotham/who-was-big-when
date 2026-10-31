@@ -1,0 +1,153 @@
+<!-- wp:paragraph -->
+<p><em>I rebuilt every English league table since 1888 and put every club on a map, sized by its home crowd. It shows a game that began in the Lancashire mill towns, drew {{x_peak_m}} million people in a single season after the war, lost {{x_fall_pct}} of them by the 1980s, and moved south.</em></p>
+<!-- /wp:paragraph -->
+
+<!-- wp:buttons -->
+<div class="wp-block-buttons"><!-- wp:button -->
+<div class="wp-block-button"><a class="wp-block-button__link wp-element-button" href="https://maps.tristanhotham.com/who-was-big-when/">Explore the interactive version</a></div>
+<!-- /wp:button -->
+<!-- wp:button -->
+<div class="wp-block-button"><a class="wp-block-button__link wp-element-button" href="[[DOI_URL]]">Read the paper</a></div>
+<!-- /wp:button --></div>
+<!-- /wp:buttons -->
+
+<!-- wp:paragraph -->
+<p>Every football fan has a version of the argument. Your club was massive once. Theirs only got big recently. Somebody's grandad saw sixty thousand at a ground that now holds twelve. Most of these arguments are about when, and the answer is usually hiding in old league tables and attendance records that nobody has put side by side.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>So I did. James Curley's engsoccerdata package has every English league result since the first Saturday of the Football League in September 1888, {{data.n_matches|int}} matches across {{data.n_seasons|int}} seasons (I filled one missing season from openfootball). From those I rebuilt every final table, with the right points for a win and the right tie-breaks for each era. Then I joined each club's average home league crowd, season by season, from the remarkable collection at englishfootballleaguetables.co.uk. That gives {{data.n_clubs|int}} clubs, each with a place, a league position and a crowd, every season.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:image {"sizeSlug":"full"} -->
+<figure class="wp-block-image size-full">{{IMG|b_maps.png|Five small maps of England and Wales for 1888-89, 1913-14, 1948-49, 1985-86 and 2024-25, with a circle for every league club sized by its home crowd. In 1888-89 twelve small dots sit in Lancashire and the Midlands; by 1948-49 large circles fill the North, Midlands and London; in 1985-86 every circle has shrunk; in 2024-25 the biggest are in London, Manchester, Liverpool, Newcastle and Birmingham.|Every league club in five seasons. Circle area is the average home crowd; colour is the division.}}</figure>
+<!-- /wp:image -->
+
+<!-- wp:heading -->
+<h2 class="wp-block-heading">Twelve clubs from two places</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>The first season looks almost nothing like now. All twelve founders came from two places: six from Lancashire (Preston, Accrington, Blackburn, Bolton, Burnley and Everton) and six from the Midlands (Aston Villa, Derby, Notts County, Stoke, West Brom and Wolves). The biggest crowd was Everton's, {{crowd_kings.first.avg|int}} a game. London did not get a league club until {{london.first_season|raw}}, and did not get a champion until Arsenal in {{champions.first_london|raw}}.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>{{founders.still_league|int}} of the twelve are still in the league. Only {{founders.still_top|int}}, Aston Villa, Everton and Wolves, were in the Premier League in {{crowds.last_season|raw}}.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading -->
+<h2 class="wp-block-heading">{{x_peak_m}} million, and then the long fall</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>Crowds grew almost every season until the First World War, and again between the wars. Then came the extraordinary seasons after 1945, when a country short of almost everything else went to the football. In {{crowds.peak_season|raw}} league matches drew <strong>{{x_peak_m}} million</strong> people, an average of {{crowds.peak_avg|int}} a game across all four divisions. It has never been matched.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:image {"sizeSlug":"full"} -->
+<figure class="wp-block-image size-full">{{IMG|b_crowds.png|Stacked area chart of total league crowds by season and division from 1888 to 2025: rising to 12.4 million before the First World War, about 28 million in the late 1930s, a peak of 41.2 million in 1948-49, a long fall to 16.5 million in 1985-86, and a recovery to 36.4 million in 2024-25.|Total league crowd each season, by division. The gaps are the wars and the two seasons with no crowd data.}}</figure>
+<!-- /wp:image -->
+
+<!-- wp:paragraph -->
+<p>What followed was one of the longest declines in British leisure. Crowds fell in {{crowds.n_decline_seasons|int}} of the next {{crowds.n_decline_span|int}} seasons, to {{x_low_m}} million in {{crowds.low_season|raw}}: {{x_fall_pct}} down. That was the season after Bradford and Heysel, and the average top-flight crowd was {{crowds.low_top_avg|int}}. The turn came the very next season, before Hillsborough, before all-seater grounds and before the Premier League, and it has kept coming: {{x_last_m}} million in {{crowds.last_season|raw}}, {{x_last_vs_peak}} of the peak. Only {{crowds.n_seasons_beating_last|int}} seasons, all between {{crowds.first_season_beating_last|raw}} and {{crowds.last_season_beating_last|raw}}, beat it.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>One thing surprised me. The Premier League has nearly doubled its average crowd since 1992, from {{crowds.pl1_top_avg|int}} to {{crowds.last_top_avg|int}}, but the top flight's share of everyone at a league match is {{crowds.t1_share_last|pct0}}, almost exactly what it was in {{crowds.peak_season|raw}} ({{crowds.t1_share_peak|pct0}}). The Football League has come back too.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading -->
+<h2 class="wp-block-heading">The game moved south</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>Before 1915 the North held {{balance.north_top_first|pct0}} of all top-flight places and London and the South just {{balance.south_top_first|pct0}}. Since 2010 the North has held {{balance.north_top_last|pct0}} and the South, London included, {{balance.south_top_last|pct0}}. In {{crowds.last_season|raw}} the Premier League had {{balance.london_n_top_last|int}} London clubs and {{balance.north_n_top_last|int}} from the whole of the North. Weight the top flight by its crowds and its centre has moved about {{x_centre_km}} km south, from the edge of the Peak District to Leicestershire.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:image {"sizeSlug":"full"} -->
+<figure class="wp-block-image size-full">{{IMG|b_balance.png|Stacked chart of the share of top-flight clubs by area each season since 1888: the North (claret) fills most of the chart before 1930 and shrinks to about a third or less after 2000, while London (dark blue) and the rest of the South (light blue) grow from almost nothing to around half.|Who holds the top-flight places: the North, the Midlands, London, the rest of the South and Wales.}}</figure>
+<!-- /wp:image -->
+
+<!-- wp:paragraph -->
+<p>But the titles never left. {{champions.by_band.North|int}} of the {{champions.n|int}} champions have come from the North, and since 2000-01 the North has won {{champions.north_since_2000|int}} of {{champions.n_since_2000|int}}, every one for Manchester or Liverpool. The North did not lose its great city clubs. It lost its towns.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:quote {"className":"is-style-default"} -->
+<blockquote class="wp-block-quote is-style-default"><!-- wp:paragraph -->
+<p>The North did not lose its great city clubs. It lost its towns.</p>
+<!-- /wp:paragraph --></blockquote>
+<!-- /wp:quote -->
+
+<!-- wp:heading -->
+<h2 class="wp-block-heading">The biggest crowd in the land</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>Everton had the biggest crowds in the league's first decade, then Aston Villa, then Newcastle and Chelsea took turns before 1914. Arsenal owned the 1930s. Since {{crowd_kings.man_utd_since|raw}} every recorded season has belonged to Manchester United, {{x_mu_kings}} seasons in all, peaking at {{crowd_kings.biggest.avg|int}} in {{crowd_kings.biggest.season|raw}}.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:image {"sizeSlug":"full"} -->
+<figure class="wp-block-image size-full">{{IMG|b_kings.png|Bar chart of the highest average home crowd each season, coloured by club: navy Everton bars in the 1890s, orange Arsenal through the 1930s, a mix after the war, and a long unbroken run of red Manchester United bars from the 1990s, reaching about 76,000.|The best-supported club each season.}}</figure>
+<!-- /wp:image -->
+
+<!-- wp:heading -->
+<h2 class="wp-block-heading">{{lost.n|int}} towns that lost league football</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>{{lost.n_towns_ever|int}} towns and cities have had a league club at some point. {{lost.n_towns_last|int}} have one in {{lost.today|raw}}. The other {{lost.n|int}} lost it and have not got it back. Some are footnotes from the 1890s: Darwen, Bootle, Northwich, and Glossop, who spent a single season in the top flight. Some went between the wars, from mining and mill towns: Merthyr Tydfil, Aberdare, Ashington, Nelson, Durham, Stalybridge. And {{lost.since_2000|int}} have gone since 2000, Bury most painfully, expelled in 2019 after {{lost.most_seasons.seasons|int}} seasons. Rochdale, Hartlepool, Southend and Scunthorpe are among the recent ones, and Carlisle and Morecambe dropped out at the end of {{crowds.last_season|raw}}. It can be undone: Barrow came back in 2020 after 48 years away, and Barnet and Oldham are back in League Two for {{lost.today|raw}}.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:image {"sizeSlug":"full"} -->
+<figure class="wp-block-image size-full">{{IMG|b_lost.png|Map of England and Wales with rings at the 39 towns that once had a league club and have none in 2025-26, coloured by when they lost it: claret rings before 1940 clustered in Lancashire, the North East and South Wales, orange between 1940 and 1999, and blue since 2000, including Bury, Carlisle, Rochdale, Hartlepool, Southend and Torquay.|The {{lost.n|int}} towns that lost league football, by when.}}</figure>
+<!-- /wp:image -->
+
+<!-- wp:heading -->
+<h2 class="wp-block-heading">When was your club big?</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>The best part of the interactive version is the search: type any club and you get its whole history as a sparkline of league position and crowd. Every club has a peak, and they are scattered across the whole history of the game. Of the {{peaks.n_clubs_20|int}} clubs with twenty or more league seasons, {{peaks.by_decade.1890s|int}} had their best decade in the 1890s, and {{peaks.by_decade.2020s|int}} are living through it now. Preston's was the very first season. Huddersfield's was the 1920s, Portsmouth's the late 1940s, Brighton's and Bournemouth's the last ten years.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:image {"sizeSlug":"full"} -->
+<figure class="wp-block-image size-full">{{IMG|b_peaks.png|Bar chart of how many clubs had their best decade, by average league position, in each decade from the 1890s to the 2020s: highest in the 1890s, 1940s and 2020s, lowest in the 1960s and 2010s.|Best decade by average league position, for clubs with twenty or more league seasons.}}</figure>
+<!-- /wp:image -->
+
+<!-- wp:heading -->
+<h2 class="wp-block-heading">How I did this</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>Tables come from every league match in engsoccerdata (2022-23 from openfootball): two points for a win until 1981, three after; goal average until 1976, then goal difference; points deductions applied; expunged records removed. I checked the rebuilt champions against the record. Crowds are average home league gates from englishfootballleaguetables.co.uk, matched to clubs season by season through all the old names (Small Heath, Newton Heath, The Wednesday and the rest). Season totals are average times home league games. Each club sits at its present or last ground, so early Arsenal is in Islington rather than Plumstead. Crowds before the mid 1920s are estimates, and there are none for 2020-21 (behind closed doors) or 2021-22 (missing from my copy of the source). The paper has the details.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:buttons -->
+<div class="wp-block-buttons"><!-- wp:button -->
+<div class="wp-block-button"><a class="wp-block-button__link wp-element-button" href="https://maps.tristanhotham.com/who-was-big-when/">Explore the interactive version</a></div>
+<!-- /wp:button -->
+<!-- wp:button -->
+<div class="wp-block-button"><a class="wp-block-button__link wp-element-button" href="[[DOI_URL]]">Read the paper</a></div>
+<!-- /wp:button -->
+<!-- wp:button -->
+<div class="wp-block-button"><a class="wp-block-button__link wp-element-button" href="https://github.com/Tristan-Hotham/who-was-big-when">Data and code</a></div>
+<!-- /wp:button --></div>
+<!-- /wp:buttons -->
+
+<!-- wp:heading {"level":3} -->
+<h3 class="wp-block-heading">Notes and sources</h3>
+<!-- /wp:heading -->
+
+<!-- wp:list -->
+<ul class="wp-block-list"><!-- wp:list-item -->
+<li>Match results: James P. Curley, <a href="https://github.com/jalapic/engsoccerdata">engsoccerdata</a> (R package; code GPL-3), and <a href="https://github.com/openfootball/england">openfootball/england</a> for 2022-23 (public domain).</li>
+<!-- /wp:list-item -->
+<!-- wp:list-item -->
+<li>Average league gates: <a href="https://www.englishfootballleaguetables.co.uk/">englishfootballleaguetables.co.uk</a>. Only per-club, per-season averages derived from its tables are republished, with credit.</li>
+<!-- /wp:list-item -->
+<!-- wp:list-item -->
+<li>Boundaries: Office for National Statistics, Open Government Licence v3.0. Town names: OS Open Names, Open Government Licence v3.0.</li>
+<!-- /wp:list-item -->
+<!-- wp:list-item -->
+<li>I wrote the text, with drafting and editing assistance from Claude (Anthropic), which also helped prepare the analysis code. I reviewed and checked all text and results.</li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list -->

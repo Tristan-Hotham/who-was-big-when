@@ -1,0 +1,148 @@
+name,engsoccerdata_name,town,county,region,nation,lat,lon,first,last,seasons
+AFC Bournemouth,AFC Bournemouth,Bournemouth,Dorset,South West,England,50.73528,-1.83833,1923,2024,95
+AFC Wimbledon,AFC Wimbledon,Wimbledon,Greater London,London,England,51.40508,-0.28194,2011,2024,14
+Aberdare Athletic,Aberdare Athletic,Aberdare,Mid Glamorgan,Wales,Wales,51.7127,-3.4374,1921,1926,6
+Accrington Stanley,Accrington,Accrington,Lancashire,North West,England,53.76536,-2.37091,2006,2024,19
+Accrington,Accrington F.C.,Accrington,Lancashire,North West,England,53.75942,-2.34444,1888,1892,5
+Accrington Stanley (1891 club),Accrington Stanley,Accrington,Lancashire,North West,England,53.76536,-2.37091,1921,1960,33
+Aldershot,Aldershot,Aldershot,Hampshire,South East,England,51.24839,-0.75479,1932,2012,57
+Arsenal,Arsenal,London,Greater London,London,England,51.555,-0.10861,1893,2024,121
+Ashington,Ashington,Ashington,Northumberland,North East,England,55.1852,-1.5505,1921,1928,8
+Aston Villa,Aston Villa,Birmingham,West Midlands,West Midlands,England,52.50917,-1.88472,1888,2024,126
+Barnet,Barnet,Barnet,Greater London,London,England,51.6026,-0.29179,1991,2017,21
+Barnsley,Barnsley,Barnsley,South Yorkshire,Yorkshire and The Humber,England,53.55222,-1.4675,1898,2024,116
+Barrow,Barrow,Barrow-in-Furness,Cumbria,North West,England,54.12333,-3.235,1921,2024,49
+Birmingham City,Birmingham City,Birmingham,West Midlands,West Midlands,England,52.4757,-1.86819,1892,2024,122
+Blackburn Rovers,Blackburn Rovers,Blackburn,Lancashire,North West,England,53.72857,-2.48921,1888,2024,126
+Blackpool,Blackpool,Blackpool,Lancashire,North West,England,53.80482,-3.04814,1896,2024,117
+Bolton Wanderers,Bolton Wanderers,Bolton,Greater Manchester,North West,England,53.58056,-2.53556,1888,2024,126
+Bootle,Bootle,Bootle,Merseyside,North West,England,53.47134,-2.96059,1892,1892,1
+Boston United,Boston United,Boston,Lincolnshire,East Midlands,England,52.97679,-0.01912,2002,2006,5
+Bradford City,Bradford City,Bradford,West Yorkshire,Yorkshire and The Humber,England,53.80417,-1.75889,1903,2024,111
+Bradford Park Avenue,Bradford Park Avenue,Bradford,West Yorkshire,Yorkshire and The Humber,England,53.75886,-1.7762,1908,1969,51
+Brentford,Brentford,London,Greater London,London,England,51.48818,-0.30264,1920,2024,98
+Brighton & Hove Albion,Brighton & Hove Albion,Brighton,East Sussex,South East,England,50.86182,-0.08328,1920,2024,98
+Bristol City,Bristol City,Bristol,Bristol,South West,England,51.44,-2.62028,1901,2024,113
+Bristol Rovers,Bristol Rovers,Bristol,Bristol,South West,England,51.48622,-2.58313,1920,2024,97
+Bromley,Bromley,London,Greater London,London,England,51.39007,0.02107,2024,2024,1
+Burnley,Burnley,Burnley,Lancashire,North West,England,53.78917,-2.23028,1888,2024,126
+Burton Albion,Burton Albion,Burton upon Trent,Staffordshire,West Midlands,England,52.82191,-1.62696,2009,2024,16
+Burton Swifts,Burton Swifts,Burton upon Trent,Staffordshire,West Midlands,England,52.799,-1.6354,1892,1900,9
+Burton United,Burton United,Burton upon Trent,Staffordshire,West Midlands,England,52.799,-1.6354,1901,1906,6
+Burton Wanderers,Burton Wanderers,Burton upon Trent,Staffordshire,West Midlands,England,52.8146,-1.6335,1894,1896,3
+Bury,Bury,Bury,Greater Manchester,North West,England,53.58051,-2.29482,1894,2018,114
+Cambridge United,Cambridge United,Cambridge,Cambridgeshire,East of England,England,52.2121,0.15415,1970,2024,46
+Cardiff City,Cardiff City,Cardiff,South Glamorgan,Wales,Wales,51.47278,-3.20306,1920,2024,98
+Carlisle United,Carlisle United,Carlisle,Cumbria,North West,England,54.89556,-2.91365,1928,2024,89
+Charlton Athletic,Charlton Athletic,London,Greater London,London,England,51.48639,0.03639,1921,2024,97
+Chelsea,Chelsea,London,Greater London,London,England,51.48167,-0.19111,1905,2024,109
+Cheltenham Town,Cheltenham,Cheltenham,Gloucestershire,South West,England,51.90616,-2.06021,1999,2024,25
+Chester City,Chester,Chester,Cheshire,North West,England,53.1892,-2.9238,1931,2008,67
+Chesterfield,Chesterfield,Chesterfield,Derbyshire,East Midlands,England,53.25357,-1.42577,1899,2024,101
+Colchester United,Colchester United,Colchester,Essex,East of England,England,51.92339,0.8977,1950,2024,73
+Coventry City,Coventry City,Coventry,West Midlands,West Midlands,England,52.44806,-1.49556,1919,2024,99
+Crawley Town,Crawley Town,Crawley,West Sussex,South East,England,51.09971,-0.19477,2011,2024,14
+Crewe Alexandra,Crewe Alexandra,Crewe,Cheshire,North West,England,53.08722,-2.43556,1892,2024,101
+Crystal Palace,Crystal Palace,London,Greater London,London,England,51.39833,-0.08556,1920,2024,98
+Dagenham & Redbridge,Dagenham and Redbridge,London,Greater London,London,England,51.5478,0.15987,2007,2015,9
+Darlington,Darlington,Darlington,Durham,North East,England,54.50944,-1.56417,1921,2009,81
+Darwen,Darwen,Darwen,Lancashire,North West,England,53.71177,-2.47729,1891,1898,8
+Derby County,Derby County,Derby,Derbyshire,East Midlands,England,52.915,-1.44722,1888,2024,126
+Doncaster Rovers,Doncaster Rovers,Doncaster,South Yorkshire,Yorkshire and The Humber,England,53.50972,-1.11389,1901,2024,93
+Durham City,Durham City,Durham,Durham,North East,England,54.70865,-1.69088,1921,1927,7
+Everton,Everton,Liverpool,Merseyside,North West,England,53.43889,-2.96639,1888,2024,126
+Exeter City,Exeter City,Exeter,Devon,South West,England,50.73071,-3.52115,1920,2024,93
+Fleetwood Town,Fleetwood Town,Fleetwood,Lancashire,North West,England,53.9165,-3.0247,2012,2024,13
+Forest Green Rovers,Forest Green Rovers,Nailsworth,Gloucestershire,South West,England,51.69897,-2.23789,2017,2023,7
+Fulham,Fulham,London,Greater London,London,England,51.475,-0.22167,1907,2024,107
+Gainsborough Trinity,Gainsborough Trinity,Gainsborough,Lincolnshire,East Midlands,England,53.4034,-0.77453,1896,1911,16
+Gateshead,Gateshead,Gateshead,Tyne and Wear,North East,England,54.96111,-1.57972,1930,1959,23
+Gillingham,Gillingham,Gillingham,Kent,South East,England,51.38425,0.56075,1920,2024,93
+Glossop North End,Glossop North End,Glossop,Derbyshire,East Midlands,England,53.44593,-1.9579,1898,1914,17
+Grimsby Town,Grimsby Town,Grimsby,Lincolnshire,Yorkshire and The Humber,England,53.57023,-0.0465,1892,2024,114
+Halifax Town,Halifax Town,Halifax,West Yorkshire,Yorkshire and The Humber,England,53.71611,-1.85917,1921,2001,69
+Harrogate Town,Harrogate Town A.F.C.,Harrogate,North Yorkshire,Yorkshire and The Humber,England,53.98458,-1.52519,2020,2024,5
+Hartlepool United,Hartlepool United,Hartlepool,Durham,North East,England,54.68914,-1.21274,1921,2022,91
+Hereford United,Hereford United,Hereford,Herefordshire,West Midlands,England,52.06072,-2.71771,1972,2011,31
+Huddersfield Town,Huddersfield Town,Huddersfield,West Yorkshire,Yorkshire and The Humber,England,53.65418,-1.76829,1910,2024,104
+Hull City,Hull City,Hull,East Riding of Yorkshire,Yorkshire and The Humber,England,53.74611,-0.36778,1905,2024,109
+Ipswich Town,Ipswich Town,Ipswich,Suffolk,East of England,England,52.05506,1.14483,1938,2024,80
+Kidderminster Harriers,Kidderminster Harriers,Kidderminster,Worcestershire,West Midlands,England,52.38047,-2.24265,2000,2004,5
+Leeds City,Leeds City,Leeds,West Yorkshire,Yorkshire and The Humber,England,53.77778,-1.57222,1905,1914,10
+Leeds United,Leeds United,Leeds,West Yorkshire,Yorkshire and The Humber,England,53.77778,-1.57222,1920,2024,98
+Leicester City,Leicester City,Leicester,Leicestershire,East Midlands,England,52.62028,-1.14222,1894,2024,120
+Leyton Orient,Leyton Orient,London,Greater London,London,England,51.56015,-0.01266,1905,2024,107
+Lincoln City,Lincoln City,Lincoln,Lincolnshire,East Midlands,England,53.21829,-0.54081,1892,2024,112
+Liverpool,Liverpool,Liverpool,Merseyside,North West,England,53.43083,-2.96085,1893,2024,121
+Loughborough,Loughborough,Loughborough,Leicestershire,East Midlands,England,52.7743,-1.1992,1895,1899,5
+Luton Town,Luton Town,Luton,Bedfordshire,East of England,England,51.88417,-0.43167,1897,2024,96
+Macclesfield Town,Macclesfield,Macclesfield,Cheshire,North West,England,53.24278,-2.12714,1997,2019,17
+Maidstone United,Maidstone United,Maidstone,Kent,South East,England,51.28,0.51583,1989,1991,3
+Manchester City,Manchester City,Manchester,Greater Manchester,North West,England,53.48306,-2.20028,1892,2024,122
+Manchester United,Manchester United,Manchester,Greater Manchester,North West,England,53.46306,-2.29139,1892,2024,122
+Mansfield Town,Mansfield Town,Mansfield,Nottinghamshire,East Midlands,England,53.13806,-1.20056,1931,2024,82
+Merthyr Town,Merthyr Town,Merthyr Tydfil,Mid Glamorgan,Wales,Wales,51.75111,-3.37778,1920,1929,10
+Middlesbrough,Middlesbrough,Middlesbrough,North Yorkshire,North East,England,54.57833,-1.21694,1899,2024,115
+Middlesbrough Ironopolis,Middlesbrough Ironopolis,Middlesbrough,North Yorkshire,North East,England,54.5641,-1.2456,1893,1893,1
+Millwall,Millwall,London,Greater London,London,England,51.48595,-0.05095,1920,2024,98
+Milton Keynes Dons,Milton Keynes Dons,Milton Keynes,Buckinghamshire,South East,England,52.00944,-0.73333,2004,2024,21
+Morecambe,Morecambe,Morecambe,Lancashire,North West,England,54.0615,-2.8672,2007,2024,18
+Nelson,Nelson,Nelson,Lancashire,North West,England,53.83657,-2.2291,1921,1930,10
+New Brighton,New Brighton,New Brighton,Merseyside,North West,England,53.43166,-3.06739,1923,1950,21
+New Brighton Tower,New Brighton Tower,New Brighton,Merseyside,North West,England,53.4359,-3.0377,1898,1900,3
+Newcastle United,Newcastle United,Newcastle upon Tyne,Tyne and Wear,North East,England,54.97556,-1.62167,1893,2024,121
+Newport County,Newport County,Newport,Gwent,Wales,Wales,51.58833,-2.98778,1920,2024,72
+Northampton Town,Northampton Town,Northampton,Northamptonshire,East Midlands,England,52.2352,-0.93345,1920,2024,98
+Northwich Victoria,Northwich Victoria,Northwich,Cheshire,North West,England,53.27047,-2.48872,1892,1893,2
+Norwich City,Norwich City,Norwich,Norfolk,East of England,England,52.62213,1.30865,1920,2024,98
+Nottingham Forest,Nottingham Forest,Nottingham,Nottinghamshire,East Midlands,England,52.94,-1.13278,1892,2024,122
+Notts County,Notts County,Nottingham,Nottinghamshire,East Midlands,England,52.9425,-1.13722,1888,2024,122
+Oldham Athletic,Oldham Athletic,Oldham,Greater Manchester,North West,England,53.55528,-2.12861,1907,2021,104
+Oxford United,Oxford United,Oxford,Oxfordshire,South East,England,51.71654,-1.20796,1962,2024,59
+Peterborough United,Peterborough United,Peterborough,Cambridgeshire,East of England,England,52.5647,-0.24041,1960,2024,65
+Plymouth Argyle,Plymouth Argyle,Plymouth,Devon,South West,England,50.38806,-4.15083,1920,2024,98
+Port Vale,Port Vale,Stoke-on-Trent,Staffordshire,West Midlands,England,53.04972,-2.1925,1892,2024,112
+Portsmouth,Portsmouth,Portsmouth,Hampshire,South East,England,50.79639,-1.06389,1920,2024,98
+Preston North End,Preston North End,Preston,Lancashire,North West,England,53.77222,-2.68806,1888,2024,126
+Queens Park Rangers,Queens Park Rangers,London,Greater London,London,England,51.50917,-0.23222,1920,2024,98
+Reading,Reading,Reading,Berkshire,South East,England,51.42222,-0.98278,1920,2024,98
+Rochdale,Rochdale,Rochdale,Greater Manchester,North West,England,53.62083,-2.18,1921,2022,95
+Rotherham County,Rotherham County,Rotherham,South Yorkshire,Yorkshire and The Humber,England,53.42837,-1.37023,1919,1924,6
+Rotherham Town,Rotherham Town,Rotherham,South Yorkshire,Yorkshire and The Humber,England,53.43,-1.357,1893,1895,3
+Rotherham United,Rotherham United,Rotherham,South Yorkshire,Yorkshire and The Humber,England,53.4279,-1.362,1925,2024,93
+Rushden & Diamonds,Rushden & Diamonds,Rushden,Northamptonshire,East Midlands,England,52.32803,-0.59999,2001,2005,5
+Salford City,Salford City,Salford,Greater Manchester,North West,England,53.51361,-2.27676,2019,2024,6
+Scarborough,Scarborough,Scarborough,North Yorkshire,Yorkshire and The Humber,England,54.26961,-0.41372,1987,1998,12
+Scunthorpe United,Scunthorpe United,Scunthorpe,Lincolnshire,Yorkshire and The Humber,England,53.58673,-0.69527,1950,2021,72
+Sheffield United,Sheffield United,Sheffield,South Yorkshire,Yorkshire and The Humber,England,53.37028,-1.47083,1892,2024,122
+Sheffield Wednesday,Sheffield Wednesday,Sheffield,South Yorkshire,Yorkshire and The Humber,England,53.41139,-1.50056,1892,2024,122
+Shrewsbury Town,Shrewsbury Town,Shrewsbury,Shropshire,West Midlands,England,52.68863,-2.74933,1950,2024,74
+South Shields,South Shields,South Shields,Tyne and Wear,North East,England,54.97452,-1.47009,1919,1929,11
+Southampton,Southampton,Southampton,Hampshire,South East,England,50.90583,-1.39111,1920,2024,98
+Southend United,Southend United,Southend-on-Sea,Essex,East of England,England,51.54902,0.70156,1920,2020,94
+Southport,Southport,Southport,Merseyside,North West,England,53.63851,-2.97918,1921,1977,50
+Stalybridge Celtic,Stalybridge Celtic,Stalybridge,Greater Manchester,North West,England,53.47528,-2.04389,1921,1922,2
+Stevenage,Stevenage Borough,Stevenage,Hertfordshire,East of England,England,51.88984,-0.19361,2010,2024,15
+Stockport County,Stockport County,Stockport,Greater Manchester,North West,England,53.39972,-2.16639,1900,2024,102
+Stoke City,Stoke City,Stoke-on-Trent,Staffordshire,West Midlands,England,52.98833,-2.17556,1888,2024,118
+Sunderland,Sunderland,Sunderland,Tyne and Wear,North East,England,54.9144,-1.3882,1890,2024,124
+Sutton United,Sutton United,London,Greater London,London,England,51.3676,-0.20434,2021,2023,3
+Swansea City,Swansea City,Swansea,West Glamorgan,Wales,Wales,51.6422,-3.9351,1920,2024,98
+Swindon Town,Swindon Town,Swindon,Wiltshire,South West,England,51.56444,-1.77056,1920,2024,98
+Thames Association,Thames,London,Greater London,London,England,51.51443,0.03474,1930,1931,2
+Torquay United,Torquay United,Torquay,Devon,South West,England,50.47641,-3.52382,1927,2013,78
+Tottenham Hotspur,Tottenham Hotspur,London,Greater London,London,England,51.60444,-0.06639,1908,2024,106
+Tranmere Rovers,Tranmere Rovers,Birkenhead,Merseyside,North West,England,53.37361,-3.0325,1921,2024,94
+Walsall,Walsall,Walsall,West Midlands,West Midlands,England,52.5655,-1.9909,1892,2024,105
+Watford,Watford,Watford,Hertfordshire,East of England,England,51.64984,-0.40149,1920,2024,98
+West Bromwich Albion,West Bromwich Albion,West Bromwich,West Midlands,West Midlands,England,52.50917,-1.96389,1888,2024,126
+West Ham United,West Ham United,London,Greater London,London,England,51.53861,-0.01639,1919,2024,99
+Wigan Athletic,Wigan Athletic,Wigan,Greater Manchester,North West,England,53.54778,-2.65389,1978,2024,47
+Wigan Borough,Wigan Borough,Wigan,Greater Manchester,North West,England,53.55491,-2.65066,1921,1930,10
+Wimbledon,Wimbledon,Wimbledon,Greater London,London,England,51.42847,-0.18967,1977,2003,27
+Wolverhampton Wanderers,Wolverhampton Wanderers,Wolverhampton,West Midlands,West Midlands,England,52.59028,-2.13028,1888,2024,126
+Workington,Workington,Workington,Cumbria,North West,England,54.64871,-3.55105,1951,1976,26
+Wrexham,Wrexham,Wrexham,Clwyd,Wales,Wales,53.05194,-3.00361,1921,2024,82
+Wycombe Wanderers,Wycombe Wanderers,High Wycombe,Buckinghamshire,South East,England,51.63056,-0.80028,1993,2024,32
+Yeovil Town,Yeovil,Yeovil,Somerset,South West,England,50.95026,-2.67384,2003,2018,16
+York City,York City,York,North Yorkshire,Yorkshire and The Humber,England,53.96932,-1.0883,1929,2015,72

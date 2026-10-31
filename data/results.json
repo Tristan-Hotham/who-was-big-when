@@ -1,0 +1,1826 @@
+{
+ "meta": {
+  "page": "https://maps.tristanhotham.com/who-was-big-when/",
+  "repo": "https://github.com/Tristan-Hotham/who-was-big-when",
+  "slug": "who-was-big-when"
+ },
+ "data": {
+  "n_seasons": 126,
+  "first": "1888-89",
+  "last": "2024-25",
+  "n_clubs": 147,
+  "n_club_seasons": 9828,
+  "n_matches": 210019,
+  "n_matches_2022": 2036,
+  "n_gate_rows": 9644,
+  "n_gate_seasons": 124,
+  "unmatched": {
+   "1919-20": [
+    "Leeds City"
+   ],
+   "1931-32": [
+    "Wigan Borough"
+   ],
+   "1961-62": [
+    "Accrington Stanley"
+   ],
+   "1991-92": [
+    "Aldershot"
+   ],
+   "1992-93": [
+    "Maidstone United"
+   ]
+  },
+  "n_unmatched": 5,
+  "years_span": 137,
+  "n_towns": 113
+ },
+ "crowds": {
+  "first_total": 635129.0,
+  "first_avg": 4811.583333333333,
+  "peak_season": "1948-49",
+  "peak_total": 41242866.0,
+  "peak_avg": 22317.56818181818,
+  "peak_top_avg": 38766.318181818184,
+  "pre1915_peak_season": "1913-14",
+  "pre1915_peak_total": 12427938.0,
+  "inter_peak_season": "1937-38",
+  "inter_peak_total": 27895308.0,
+  "low_season": "1985-86",
+  "low_total": 16507959.0,
+  "low_avg": 8140.0192307692305,
+  "low_top_avg": 19580.909090909092,
+  "fall_pct": 0.5997378310227034,
+  "last_season": "2024-25",
+  "last_total": 36427632.0,
+  "last_avg": 17891.764243614933,
+  "last_top_avg": 40429.95,
+  "last_vs_peak": 0.8832468626210409,
+  "last_vs_low": 2.206670854949422,
+  "pl1_season": "1992-93",
+  "pl1_total": 20648946.0,
+  "pl1_top_avg": 21136.090909090908,
+  "top_avg_growth_pl": 1.912839520509942,
+  "t1_share_last": 0.42175074679572916,
+  "t1_share_peak": 0.4342578665604859,
+  "lower_last": 21064251.0,
+  "lower_peak": 23332827.0,
+  "post_war_above_40m": [
+   "1947-48",
+   "1948-49",
+   "1949-50"
+  ],
+  "years_above_last_total": [
+   "1947-48",
+   "1948-49",
+   "1949-50",
+   "1950-51",
+   "1951-52",
+   "1952-53"
+  ],
+  "first_games": 132,
+  "n_decline_seasons": 27,
+  "n_decline_span": 37,
+  "first_rise_after_low": "1986-87",
+  "hull_1948": 36760.0,
+  "hull_1948_beat_top": 9,
+  "n_top_1948": 22,
+  "first_season_beating_last": "1947-48",
+  "last_season_beating_last": "1952-53",
+  "n_seasons_beating_last": 6
+ },
+ "crowd_kings": {
+  "runs": [
+   {
+    "team": "Everton",
+    "name": "Everton",
+    "from": 1888,
+    "to": 1897,
+    "n": 10
+   },
+   {
+    "team": "Aston Villa",
+    "name": "Aston Villa",
+    "from": 1898,
+    "to": 1903,
+    "n": 6
+   },
+   {
+    "team": "Newcastle United",
+    "name": "Newcastle United",
+    "from": 1904,
+    "to": 1906,
+    "n": 3
+   },
+   {
+    "team": "Chelsea",
+    "name": "Chelsea",
+    "from": 1907,
+    "to": 1909,
+    "n": 3
+   },
+   {
+    "team": "Manchester United",
+    "name": "Manchester United",
+    "from": 1910,
+    "to": 1910,
+    "n": 1
+   },
+   {
+    "team": "Chelsea",
+    "name": "Chelsea",
+    "from": 1911,
+    "to": 1913,
+    "n": 3
+   },
+   {
+    "team": "Manchester City",
+    "name": "Manchester City",
+    "from": 1914,
+    "to": 1914,
+    "n": 1
+   },
+   {
+    "team": "Chelsea",
+    "name": "Chelsea",
+    "from": 1919,
+    "to": 1919,
+    "n": 1
+   },
+   {
+    "team": "Newcastle United",
+    "name": "Newcastle United",
+    "from": 1920,
+    "to": 1920,
+    "n": 1
+   },
+   {
+    "team": "Chelsea",
+    "name": "Chelsea",
+    "from": 1921,
+    "to": 1921,
+    "n": 1
+   },
+   {
+    "team": "Liverpool",
+    "name": "Liverpool",
+    "from": 1922,
+    "to": 1922,
+    "n": 1
+   },
+   {
+    "team": "Chelsea",
+    "name": "Chelsea",
+    "from": 1923,
+    "to": 1923,
+    "n": 1
+   },
+   {
+    "team": "Arsenal",
+    "name": "Arsenal",
+    "from": 1924,
+    "to": 1924,
+    "n": 1
+   },
+   {
+    "team": "Chelsea",
+    "name": "Chelsea",
+    "from": 1925,
+    "to": 1925,
+    "n": 1
+   },
+   {
+    "team": "Newcastle United",
+    "name": "Newcastle United",
+    "from": 1926,
+    "to": 1926,
+    "n": 1
+   },
+   {
+    "team": "Manchester City",
+    "name": "Manchester City",
+    "from": 1927,
+    "to": 1928,
+    "n": 2
+   },
+   {
+    "team": "Arsenal",
+    "name": "Arsenal",
+    "from": 1929,
+    "to": 1938,
+    "n": 10
+   },
+   {
+    "team": "Newcastle United",
+    "name": "Newcastle United",
+    "from": 1946,
+    "to": 1948,
+    "n": 3
+   },
+   {
+    "team": "Tottenham Hotspur",
+    "name": "Tottenham Hotspur",
+    "from": 1949,
+    "to": 1950,
+    "n": 2
+   },
+   {
+    "team": "Arsenal",
+    "name": "Arsenal",
+    "from": 1951,
+    "to": 1953,
+    "n": 3
+   },
+   {
+    "team": "Chelsea",
+    "name": "Chelsea",
+    "from": 1954,
+    "to": 1954,
+    "n": 1
+   },
+   {
+    "team": "Everton",
+    "name": "Everton",
+    "from": 1955,
+    "to": 1955,
+    "n": 1
+   },
+   {
+    "team": "Manchester United",
+    "name": "Manchester United",
+    "from": 1956,
+    "to": 1958,
+    "n": 3
+   },
+   {
+    "team": "Tottenham Hotspur",
+    "name": "Tottenham Hotspur",
+    "from": 1959,
+    "to": 1961,
+    "n": 3
+   },
+   {
+    "team": "Everton",
+    "name": "Everton",
+    "from": 1962,
+    "to": 1963,
+    "n": 2
+   },
+   {
+    "team": "Manchester United",
+    "name": "Manchester United",
+    "from": 1964,
+    "to": 1964,
+    "n": 1
+   },
+   {
+    "team": "Liverpool",
+    "name": "Liverpool",
+    "from": 1965,
+    "to": 1965,
+    "n": 1
+   },
+   {
+    "team": "Manchester United",
+    "name": "Manchester United",
+    "from": 1966,
+    "to": 1969,
+    "n": 4
+   },
+   {
+    "team": "Liverpool",
+    "name": "Liverpool",
+    "from": 1970,
+    "to": 1971,
+    "n": 2
+   },
+   {
+    "team": "Manchester United",
+    "name": "Manchester United",
+    "from": 1972,
+    "to": 1977,
+    "n": 6
+   },
+   {
+    "team": "Liverpool",
+    "name": "Liverpool",
+    "from": 1978,
+    "to": 1978,
+    "n": 1
+   },
+   {
+    "team": "Manchester United",
+    "name": "Manchester United",
+    "from": 1979,
+    "to": 1986,
+    "n": 8
+   },
+   {
+    "team": "Liverpool",
+    "name": "Liverpool",
+    "from": 1987,
+    "to": 1988,
+    "n": 2
+   },
+   {
+    "team": "Manchester United",
+    "name": "Manchester United",
+    "from": 1989,
+    "to": 1991,
+    "n": 3
+   },
+   {
+    "team": "Liverpool",
+    "name": "Liverpool",
+    "from": 1992,
+    "to": 1992,
+    "n": 1
+   },
+   {
+    "team": "Manchester United",
+    "name": "Manchester United",
+    "from": 1993,
+    "to": 2024,
+    "n": 30
+   }
+  ],
+  "counts": [
+   {
+    "name": "Manchester United",
+    "n": 56
+   },
+   {
+    "name": "Arsenal",
+    "n": 14
+   },
+   {
+    "name": "Everton",
+    "n": 13
+   },
+   {
+    "name": "Chelsea",
+    "n": 11
+   },
+   {
+    "name": "Newcastle United",
+    "n": 8
+   },
+   {
+    "name": "Liverpool",
+    "n": 8
+   },
+   {
+    "name": "Aston Villa",
+    "n": 6
+   },
+   {
+    "name": "Tottenham Hotspur",
+    "n": 5
+   },
+   {
+    "name": "Manchester City",
+    "n": 3
+   }
+  ],
+  "n_clubs": 9,
+  "man_utd": 56,
+  "man_utd_since": "1993-94",
+  "biggest": {
+   "name": "Manchester United",
+   "season": "2006-07",
+   "avg": 75826.0
+  },
+  "first": {
+   "name": "Everton",
+   "avg": 7518.0
+  }
+ },
+ "champions": {
+  "n": 126,
+  "n_clubs": 24,
+  "by_band": {
+   "North": 87,
+   "Midlands": 15,
+   "London": 21,
+   "South (outside London)": 3,
+   "Wales": 0
+  },
+  "first_london": "1930-31",
+  "first_london_club": "Arsenal",
+  "first_south": "1948-49",
+  "first_south_club": "Portsmouth",
+  "north_to_1914": 21,
+  "n_to_1914": 27,
+  "midlands_to_1914": 6,
+  "london_since_2000": 7,
+  "n_since_2000": 25,
+  "north_since_2000": 17
+ },
+ "founders": {
+  "n": 12,
+  "north_west": 6,
+  "midlands": 6,
+  "names": [
+   "Accrington",
+   "Aston Villa",
+   "Blackburn Rovers",
+   "Bolton Wanderers",
+   "Burnley",
+   "Derby County",
+   "Everton",
+   "Notts County",
+   "Preston North End",
+   "Stoke City",
+   "West Bromwich Albion",
+   "Wolverhampton Wanderers"
+  ],
+  "still_top": 3,
+  "still_league": 11,
+  "still_top_names": [
+   "Aston Villa",
+   "Everton",
+   "Wolverhampton Wanderers"
+  ]
+ },
+ "london": {
+  "first_season": "1893-94",
+  "first_club": "Arsenal",
+  "first_top": "1904-05",
+  "n_clubs_ever": 18,
+  "n_clubs_last": 13,
+  "top_last": 7,
+  "top_max": 8,
+  "top_max_seasons": [
+   "1989-90"
+  ],
+  "top_1900": 0,
+  "top_1930": 3,
+  "crowd_share_1900": 0.022075242897916326,
+  "crowd_share_1948": 0.17073229101003795,
+  "crowd_share_last": 0.19363690727961674
+ },
+ "eras": [
+  {
+   "label": "1888 to 1915",
+   "from": 1888,
+   "to": 1914,
+   "top": {
+    "North": 0.6207627118644068,
+    "Midlands": 0.3241525423728814,
+    "London": 0.04449152542372881,
+    "South (outside London)": 0.01059322033898305,
+    "Wales": 0.0
+   },
+   "crowd": {
+    "North": 0.6018072417666318,
+    "Midlands": 0.2723465526824132,
+    "London": 0.10873600507272867,
+    "South (outside London)": 0.0171102004782263,
+    "Wales": 0.0
+   },
+   "champs": {
+    "North": 21,
+    "Midlands": 6,
+    "London": 0,
+    "South (outside London)": 0,
+    "Wales": 0
+   },
+   "n_champs": 27,
+   "centre_lat": 53.34691051965644,
+   "centre_lon": -1.8790286032431447,
+   "centre_near": "Chapel-en-le-Frith"
+  },
+  {
+   "label": "1919 to 1939",
+   "from": 1919,
+   "to": 1939,
+   "top": {
+    "North": 0.5931818181818181,
+    "Midlands": 0.225,
+    "London": 0.13636363636363635,
+    "South (outside London)": 0.02727272727272727,
+    "Wales": 0.01818181818181818
+   },
+   "crowd": {
+    "North": 0.45216676178802456,
+    "Midlands": 0.19884092632582712,
+    "London": 0.18637339128011218,
+    "South (outside London)": 0.12480680625311642,
+    "Wales": 0.037812114352919736
+   },
+   "champs": {
+    "North": 14,
+    "Midlands": 1,
+    "London": 5,
+    "South (outside London)": 0,
+    "Wales": 0
+   },
+   "n_champs": 20,
+   "centre_lat": 53.046635629766875,
+   "centre_lon": -1.6687690435546458,
+   "centre_near": "Ashbourne"
+  },
+  {
+   "label": "1946 to 1967",
+   "from": 1946,
+   "to": 1966,
+   "top": {
+    "North": 0.5043290043290043,
+    "Midlands": 0.23593073593073594,
+    "London": 0.19696969696969696,
+    "South (outside London)": 0.047619047619047616,
+    "Wales": 0.015151515151515152
+   },
+   "crowd": {
+    "North": 0.4353790077851308,
+    "Midlands": 0.1990335667665478,
+    "London": 0.16704478223228564,
+    "South (outside London)": 0.1632034618137836,
+    "Wales": 0.035339181402252194
+   },
+   "champs": {
+    "North": 10,
+    "Midlands": 3,
+    "London": 5,
+    "South (outside London)": 3,
+    "Wales": 0
+   },
+   "n_champs": 21,
+   "centre_lat": 52.914882259368866,
+   "centre_lon": -1.6033662555073867,
+   "centre_near": "Derby"
+  },
+  {
+   "label": "1967 to 1992",
+   "from": 1967,
+   "to": 1991,
+   "top": {
+    "North": 0.3296500920810313,
+    "Midlands": 0.281767955801105,
+    "London": 0.2283609576427256,
+    "South (outside London)": 0.15653775322283608,
+    "Wales": 0.003683241252302026
+   },
+   "crowd": {
+    "North": 0.4026281867826565,
+    "Midlands": 0.21106114159684955,
+    "London": 0.17382263407468143,
+    "South (outside London)": 0.18935984532845157,
+    "Wales": 0.02312819221736094
+   },
+   "champs": {
+    "North": 18,
+    "Midlands": 4,
+    "London": 3,
+    "South (outside London)": 0,
+    "Wales": 0
+   },
+   "n_champs": 25,
+   "centre_lat": 52.73534147703838,
+   "centre_lon": -1.3743057093650395,
+   "centre_near": "Coalville"
+  },
+  {
+   "label": "1992 to 2010",
+   "from": 1992,
+   "to": 2009,
+   "top": {
+    "North": 0.46174863387978143,
+    "Midlands": 0.16666666666666666,
+    "London": 0.2786885245901639,
+    "South (outside London)": 0.09289617486338798,
+    "Wales": 0.0
+   },
+   "crowd": {
+    "North": 0.432486437854488,
+    "Midlands": 0.19908886062934236,
+    "London": 0.1772415476240078,
+    "South (outside London)": 0.17244426587611303,
+    "Wales": 0.018738888016048838
+   },
+   "champs": {
+    "North": 12,
+    "Midlands": 0,
+    "London": 6,
+    "South (outside London)": 0,
+    "Wales": 0
+   },
+   "n_champs": 18,
+   "centre_lat": 52.90063560024694,
+   "centre_lon": -1.4448925224322562,
+   "centre_near": "Derby"
+  },
+  {
+   "label": "2010 to 2025",
+   "from": 2010,
+   "to": 2024,
+   "top": {
+    "North": 0.36333333333333334,
+    "Midlands": 0.17333333333333334,
+    "London": 0.29,
+    "South (outside London)": 0.14333333333333334,
+    "Wales": 0.03
+   },
+   "crowd": {
+    "North": 0.40126509087309975,
+    "Midlands": 0.18287211437516937,
+    "London": 0.1929238271070346,
+    "South (outside London)": 0.192305805316912,
+    "Wales": 0.030633162327784288
+   },
+   "champs": {
+    "North": 12,
+    "Midlands": 1,
+    "London": 2,
+    "South (outside London)": 0,
+    "Wales": 0
+   },
+   "n_champs": 15,
+   "centre_lat": 52.64993149176864,
+   "centre_lon": -1.3803551271620411,
+   "centre_near": "Market Bosworth"
+  }
+ ],
+ "balance": {
+  "north_top_first": 0.6207627118644068,
+  "north_top_last": 0.36333333333333334,
+  "south_top_first": 0.05508474576271186,
+  "south_top_last": 0.43333333333333335,
+  "midlands_top_first": 0.3241525423728814,
+  "midlands_top_last": 0.17333333333333334,
+  "north_crowd_first": 0.6018072417666318,
+  "north_crowd_last": 0.40126509087309975,
+  "south_crowd_first": 0.12584620555095496,
+  "south_crowd_last": 0.3852296324239466,
+  "centre_shift_km": 77.50406790112329,
+  "north_top_1888": 0.5,
+  "north_top_last_season": 0.25,
+  "south_top_last_season": 0.55,
+  "north_n_top_last": 5,
+  "london_n_top_last": 7,
+  "south_n_top_last": 4,
+  "mid_n_top_last": 4
+ },
+ "lost": {
+  "n": 39,
+  "n_towns_ever": 113,
+  "n_towns_last": 74,
+  "today": "2025-26",
+  "membership_change": {
+   "in": [
+    "Barnet",
+    "Oldham Athletic"
+   ],
+   "out": [
+    "Carlisle United",
+    "Morecambe"
+   ]
+  },
+  "n_top_flight": 4,
+  "top_flight": [
+   {
+    "town": "Bury",
+    "top_seasons": 22,
+    "best_season": "1925-26",
+    "best_pos": 4
+   },
+   {
+    "town": "Darwen",
+    "top_seasons": 2,
+    "best_season": "1891-92",
+    "best_pos": 14
+   },
+   {
+    "town": "Carlisle",
+    "top_seasons": 1,
+    "best_season": "1974-75",
+    "best_pos": 22
+   },
+   {
+    "town": "Glossop",
+    "top_seasons": 1,
+    "best_season": "1899-00",
+    "best_pos": 18
+   }
+  ],
+  "before_1940": 13,
+  "since_1960": 24,
+  "since_2000": 20,
+  "biggest_crowd": {
+   "town": "Bury",
+   "peak_avg": 19333.0,
+   "peak_avg_season": "1924-25"
+  },
+  "most_seasons": {
+   "town": "Bury",
+   "seasons": 114,
+   "last_label": "2018-19"
+  },
+  "recent": [
+   {
+    "town": "Carlisle",
+    "last_label": "2024-25"
+   },
+   {
+    "town": "Morecambe",
+    "last_label": "2024-25"
+   },
+   {
+    "town": "Nailsworth",
+    "last_label": "2023-24"
+   },
+   {
+    "town": "Hartlepool",
+    "last_label": "2022-23"
+   },
+   {
+    "town": "Rochdale",
+    "last_label": "2022-23"
+   },
+   {
+    "town": "Scunthorpe",
+    "last_label": "2021-22"
+   },
+   {
+    "town": "Southend-on-Sea",
+    "last_label": "2020-21"
+   },
+   {
+    "town": "Macclesfield",
+    "last_label": "2019-20"
+   },
+   {
+    "town": "Bury",
+    "last_label": "2018-19"
+   },
+   {
+    "town": "Yeovil",
+    "last_label": "2018-19"
+   },
+   {
+    "town": "York",
+    "last_label": "2015-16"
+   },
+   {
+    "town": "Torquay",
+    "last_label": "2013-14"
+   },
+   {
+    "town": "Aldershot",
+    "last_label": "2012-13"
+   },
+   {
+    "town": "Hereford",
+    "last_label": "2011-12"
+   },
+   {
+    "town": "Darlington",
+    "last_label": "2009-10"
+   },
+   {
+    "town": "Chester",
+    "last_label": "2008-09"
+   },
+   {
+    "town": "Boston",
+    "last_label": "2006-07"
+   },
+   {
+    "town": "Rushden",
+    "last_label": "2005-06"
+   },
+   {
+    "town": "Kidderminster",
+    "last_label": "2004-05"
+   },
+   {
+    "town": "Halifax",
+    "last_label": "2001-02"
+   }
+  ],
+  "glossop": {
+   "town": "Glossop",
+   "clubs": [
+    "Glossop North End"
+   ],
+   "first": 1898,
+   "last": 1914,
+   "last_label": "1914-15",
+   "seasons": 17,
+   "best_rank": 18,
+   "best_tier": 1,
+   "best_pos": 18,
+   "best_season": "1899-00",
+   "top_seasons": 1,
+   "peak_avg": 4019.0,
+   "peak_avg_season": "1899-00",
+   "region": "East Midlands",
+   "lat": 53.44593,
+   "lon": -1.9579000000000002
+  }
+ },
+ "comebacks": [
+  {
+   "name": "Barrow",
+   "out": "1971-72",
+   "back": "2020-21",
+   "missed": 48
+  },
+  {
+   "name": "Newport County",
+   "out": "1987-88",
+   "back": "2013-14",
+   "missed": 25
+  },
+  {
+   "name": "Aldershot",
+   "out": "1990-91",
+   "back": "2008-09",
+   "missed": 17
+  },
+  {
+   "name": "Wrexham",
+   "out": "2007-08",
+   "back": "2023-24",
+   "missed": 15
+  },
+  {
+   "name": "Stockport County",
+   "out": "2010-11",
+   "back": "2022-23",
+   "missed": 11
+  }
+ ],
+ "peaks": {
+  "by_decade": {
+   "1890s": 10,
+   "1900s": 7,
+   "1910s": 7,
+   "1920s": 8,
+   "1930s": 8,
+   "1940s": 10,
+   "1950s": 9,
+   "1960s": 3,
+   "1970s": 6,
+   "1980s": 9,
+   "1990s": 7,
+   "2000s": 6,
+   "2010s": 3,
+   "2020s": 10
+  },
+  "n_clubs_20": 103,
+  "Huddersfield Town": {
+   "name": "Huddersfield Town",
+   "town": "Huddersfield",
+   "region": "Yorkshire and The Humber",
+   "first": 1910,
+   "last": 2024,
+   "seasons": 104,
+   "top_seasons": 32,
+   "titles": 3,
+   "best_rank": 1,
+   "best_season": "1923-24",
+   "best_tier": 1,
+   "best_pos": 1,
+   "best_decade": "1920s",
+   "best_decade_rank": 6.7,
+   "peak_avg": 30820.0,
+   "peak_avg_season": "1953-54",
+   "in_league_last": true,
+   "tier_last": 3.0
+  },
+  "Preston North End": {
+   "name": "Preston North End",
+   "town": "Preston",
+   "region": "North West",
+   "first": 1888,
+   "last": 2024,
+   "seasons": 126,
+   "top_seasons": 46,
+   "titles": 2,
+   "best_rank": 1,
+   "best_season": "1888-89",
+   "best_tier": 1,
+   "best_pos": 1,
+   "best_decade": "1890s",
+   "best_decade_rank": 8.0,
+   "peak_avg": 33226.0,
+   "peak_avg_season": "1948-49",
+   "in_league_last": true,
+   "tier_last": 2.0
+  },
+  "Blackburn Rovers": {
+   "name": "Blackburn Rovers",
+   "town": "Blackburn",
+   "region": "North West",
+   "first": 1888,
+   "last": 2024,
+   "seasons": 126,
+   "top_seasons": 72,
+   "titles": 3,
+   "best_rank": 1,
+   "best_season": "1911-12",
+   "best_tier": 1,
+   "best_pos": 1,
+   "best_decade": "1910s",
+   "best_decade_rank": 7.0,
+   "peak_avg": 30544.0,
+   "peak_avg_season": "1958-59",
+   "in_league_last": true,
+   "tier_last": 2.0
+  },
+  "Sunderland": {
+   "name": "Sunderland",
+   "town": "Sunderland",
+   "region": "North East",
+   "first": 1890,
+   "last": 2024,
+   "seasons": 124,
+   "top_seasons": 86,
+   "titles": 6,
+   "best_rank": 1,
+   "best_season": "1891-92",
+   "best_tier": 1,
+   "best_pos": 1,
+   "best_decade": "1890s",
+   "best_decade_rank": 4.4,
+   "peak_avg": 47785.0,
+   "peak_avg_season": "1949-50",
+   "in_league_last": true,
+   "tier_last": 2.0
+  },
+  "Portsmouth": {
+   "name": "Portsmouth",
+   "town": "Portsmouth",
+   "region": "South East",
+   "first": 1920,
+   "last": 2024,
+   "seasons": 98,
+   "top_seasons": 33,
+   "titles": 2,
+   "best_rank": 1,
+   "best_season": "1948-49",
+   "best_tier": 1,
+   "best_pos": 1,
+   "best_decade": "1940s",
+   "best_decade_rank": 5.5,
+   "peak_avg": 37082.0,
+   "peak_avg_season": "1948-49",
+   "in_league_last": true,
+   "tier_last": 2.0
+  },
+  "Burnley": {
+   "name": "Burnley",
+   "town": "Burnley",
+   "region": "North West",
+   "first": 1888,
+   "last": 2024,
+   "seasons": 126,
+   "top_seasons": 60,
+   "titles": 2,
+   "best_rank": 1,
+   "best_season": "1920-21",
+   "best_tier": 1,
+   "best_pos": 1,
+   "best_decade": "1950s",
+   "best_decade_rank": 7.5,
+   "peak_avg": 33626.0,
+   "peak_avg_season": "1947-48",
+   "in_league_last": true,
+   "tier_last": 2.0
+  },
+  "Wolverhampton Wanderers": {
+   "name": "Wolverhampton Wanderers",
+   "town": "Wolverhampton",
+   "region": "West Midlands",
+   "first": 1888,
+   "last": 2024,
+   "seasons": 126,
+   "top_seasons": 70,
+   "titles": 3,
+   "best_rank": 1,
+   "best_season": "1953-54",
+   "best_tier": 1,
+   "best_pos": 1,
+   "best_decade": "1940s",
+   "best_decade_rank": 4.0,
+   "peak_avg": 45343.0,
+   "peak_avg_season": "1949-50",
+   "in_league_last": true,
+   "tier_last": 1.0
+  },
+  "Derby County": {
+   "name": "Derby County",
+   "town": "Derby",
+   "region": "East Midlands",
+   "first": 1888,
+   "last": 2024,
+   "seasons": 126,
+   "top_seasons": 65,
+   "titles": 2,
+   "best_rank": 1,
+   "best_season": "1971-72",
+   "best_tier": 1,
+   "best_pos": 1,
+   "best_decade": "1930s",
+   "best_decade_rank": 7.0,
+   "peak_avg": 35924.0,
+   "peak_avg_season": "1969-70",
+   "in_league_last": true,
+   "tier_last": 2.0
+  },
+  "Nottingham Forest": {
+   "name": "Nottingham Forest",
+   "town": "Nottingham",
+   "region": "East Midlands",
+   "first": 1892,
+   "last": 2024,
+   "seasons": 122,
+   "top_seasons": 59,
+   "titles": 1,
+   "best_rank": 1,
+   "best_season": "1977-78",
+   "best_tier": 1,
+   "best_pos": 1,
+   "best_decade": "1980s",
+   "best_decade_rank": 6.7,
+   "peak_avg": 32721.0,
+   "peak_avg_season": "1967-68",
+   "in_league_last": true,
+   "tier_last": 1.0
+  },
+  "Bolton Wanderers": {
+   "name": "Bolton Wanderers",
+   "town": "Bolton",
+   "region": "North West",
+   "first": 1888,
+   "last": 2024,
+   "seasons": 126,
+   "top_seasons": 73,
+   "titles": 0,
+   "best_rank": 3,
+   "best_season": "1891-92",
+   "best_tier": 1,
+   "best_pos": 3,
+   "best_decade": "1920s",
+   "best_decade_rank": 7.7,
+   "peak_avg": 35832.0,
+   "peak_avg_season": "1951-52",
+   "in_league_last": true,
+   "tier_last": 3.0
+  },
+  "Notts County": {
+   "name": "Notts County",
+   "town": "Nottingham",
+   "region": "East Midlands",
+   "first": 1888,
+   "last": 2024,
+   "seasons": 122,
+   "top_seasons": 30,
+   "titles": 0,
+   "best_rank": 3,
+   "best_season": "1890-91",
+   "best_tier": 1,
+   "best_pos": 3,
+   "best_decade": "1890s",
+   "best_decade_rank": 13.8,
+   "peak_avg": 35165.0,
+   "peak_avg_season": "1949-50",
+   "in_league_last": true,
+   "tier_last": 4.0
+  },
+  "Sheffield Wednesday": {
+   "name": "Sheffield Wednesday",
+   "town": "Sheffield",
+   "region": "Yorkshire and The Humber",
+   "first": 1892,
+   "last": 2024,
+   "seasons": 122,
+   "top_seasons": 66,
+   "titles": 4,
+   "best_rank": 1,
+   "best_season": "1902-03",
+   "best_tier": 1,
+   "best_pos": 1,
+   "best_decade": "1900s",
+   "best_decade_rank": 6.5,
+   "peak_avg": 42634.0,
+   "peak_avg_season": "1952-53",
+   "in_league_last": true,
+   "tier_last": 2.0
+  },
+  "Manchester City": {
+   "name": "Manchester City",
+   "town": "Manchester",
+   "region": "North West",
+   "first": 1892,
+   "last": 2024,
+   "seasons": 122,
+   "top_seasons": 96,
+   "titles": 10,
+   "best_rank": 1,
+   "best_season": "1936-37",
+   "best_tier": 1,
+   "best_pos": 1,
+   "best_decade": "2020s",
+   "best_decade_rank": 1.4,
+   "peak_avg": 54219.0,
+   "peak_avg_season": "2019-20",
+   "in_league_last": true,
+   "tier_last": 1.0
+  },
+  "Brighton & Hove Albion": {
+   "name": "Brighton & Hove Albion",
+   "town": "Brighton",
+   "region": "South East",
+   "first": 1920,
+   "last": 2024,
+   "seasons": 98,
+   "top_seasons": 12,
+   "titles": 0,
+   "best_rank": 6,
+   "best_season": "2022-23",
+   "best_tier": 1,
+   "best_pos": 6,
+   "best_decade": "2020s",
+   "best_decade_rank": 10.0,
+   "peak_avg": 32069.0,
+   "peak_avg_season": "2023-24",
+   "in_league_last": true,
+   "tier_last": 1.0
+  },
+  "Brentford": {
+   "name": "Brentford",
+   "town": "London",
+   "region": "London",
+   "first": 1920,
+   "last": 2024,
+   "seasons": 98,
+   "top_seasons": 9,
+   "titles": 0,
+   "best_rank": 5,
+   "best_season": "1935-36",
+   "best_tier": 1,
+   "best_pos": 5,
+   "best_decade": "2020s",
+   "best_decade_rank": 14.2,
+   "peak_avg": 25768.0,
+   "peak_avg_season": "1946-47",
+   "in_league_last": true,
+   "tier_last": 1.0
+  },
+  "AFC Bournemouth": {
+   "name": "AFC Bournemouth",
+   "town": "Bournemouth",
+   "region": "South West",
+   "first": 1923,
+   "last": 2024,
+   "seasons": 95,
+   "top_seasons": 8,
+   "titles": 0,
+   "best_rank": 9,
+   "best_season": "2016-17",
+   "best_tier": 1,
+   "best_pos": 9,
+   "best_decade": "2020s",
+   "best_decade_rank": 16.8,
+   "peak_avg": 16852.0,
+   "peak_avg_season": "1947-48",
+   "in_league_last": true,
+   "tier_last": 1.0
+  },
+  "Wigan Athletic": {
+   "name": "Wigan Athletic",
+   "town": "Wigan",
+   "region": "North West",
+   "first": 1978,
+   "last": 2024,
+   "seasons": 47,
+   "top_seasons": 8,
+   "titles": 0,
+   "best_rank": 10,
+   "best_season": "2005-06",
+   "best_tier": 1,
+   "best_pos": 10,
+   "best_decade": "2000s",
+   "best_decade_rank": 26.6,
+   "peak_avg": 20610.0,
+   "peak_avg_season": "2005-06",
+   "in_league_last": true,
+   "tier_last": 3.0
+  },
+  "Bury": {
+   "name": "Bury",
+   "town": "Bury",
+   "region": "North West",
+   "first": 1894,
+   "last": 2018,
+   "seasons": 114,
+   "top_seasons": 22,
+   "titles": 0,
+   "best_rank": 4,
+   "best_season": "1925-26",
+   "best_tier": 1,
+   "best_pos": 4,
+   "best_decade": "1900s",
+   "best_decade_rank": 11.9,
+   "peak_avg": 19333.0,
+   "peak_avg_season": "1924-25",
+   "in_league_last": false,
+   "tier_last": null
+  },
+  "Newcastle United": {
+   "name": "Newcastle United",
+   "town": "Newcastle upon Tyne",
+   "region": "North East",
+   "first": 1893,
+   "last": 2024,
+   "seasons": 121,
+   "top_seasons": 93,
+   "titles": 4,
+   "best_rank": 1,
+   "best_season": "1904-05",
+   "best_tier": 1,
+   "best_pos": 1,
+   "best_decade": "1900s",
+   "best_decade_rank": 4.2,
+   "peak_avg": 56283.0,
+   "peak_avg_season": "1947-48",
+   "in_league_last": true,
+   "tier_last": 1.0
+  },
+  "Aston Villa": {
+   "name": "Aston Villa",
+   "town": "Birmingham",
+   "region": "West Midlands",
+   "first": 1888,
+   "last": 2024,
+   "seasons": 126,
+   "top_seasons": 111,
+   "titles": 7,
+   "best_rank": 1,
+   "best_season": "1893-94",
+   "best_tier": 1,
+   "best_pos": 1,
+   "best_decade": "1890s",
+   "best_decade_rank": 3.1,
+   "peak_avg": 47315.0,
+   "peak_avg_season": "1948-49",
+   "in_league_last": true,
+   "tier_last": 1.0
+  },
+  "Arsenal": {
+   "name": "Arsenal",
+   "town": "London",
+   "region": "London",
+   "first": 1893,
+   "last": 2024,
+   "seasons": 121,
+   "top_seasons": 108,
+   "titles": 13,
+   "best_rank": 1,
+   "best_season": "1930-31",
+   "best_tier": 1,
+   "best_pos": 1,
+   "best_decade": "1930s",
+   "best_decade_rank": 2.3333333333333335,
+   "peak_avg": 60279.0,
+   "peak_avg_season": "2019-20",
+   "in_league_last": true,
+   "tier_last": 1.0
+  },
+  "Everton": {
+   "name": "Everton",
+   "town": "Liverpool",
+   "region": "North West",
+   "first": 1888,
+   "last": 2024,
+   "seasons": 126,
+   "top_seasons": 122,
+   "titles": 9,
+   "best_rank": 1,
+   "best_season": "1890-91",
+   "best_tier": 1,
+   "best_pos": 1,
+   "best_decade": "1960s",
+   "best_decade_rank": 4.3,
+   "peak_avg": 51603.0,
+   "peak_avg_season": "1962-63",
+   "in_league_last": true,
+   "tier_last": 1.0
+  },
+  "recent_best": [
+   {
+    "name": "Leicester City",
+    "best_season": "2015-16",
+    "best_pos": 1,
+    "best_tier": 1,
+    "seasons": 120
+   },
+   {
+    "name": "Brighton & Hove Albion",
+    "best_season": "2022-23",
+    "best_pos": 6,
+    "best_tier": 1,
+    "seasons": 98
+   },
+   {
+    "name": "AFC Bournemouth",
+    "best_season": "2016-17",
+    "best_pos": 9,
+    "best_tier": 1,
+    "seasons": 95
+   }
+  ],
+  "early_best_still_league": [
+   {
+    "name": "Arsenal",
+    "best_season": "1930-31",
+    "best_pos": 1,
+    "best_tier": 1,
+    "tier_last": 1.0
+   },
+   {
+    "name": "Aston Villa",
+    "best_season": "1893-94",
+    "best_pos": 1,
+    "best_tier": 1,
+    "tier_last": 1.0
+   },
+   {
+    "name": "Blackburn Rovers",
+    "best_season": "1911-12",
+    "best_pos": 1,
+    "best_tier": 1,
+    "tier_last": 2.0
+   },
+   {
+    "name": "Burnley",
+    "best_season": "1920-21",
+    "best_pos": 1,
+    "best_tier": 1,
+    "tier_last": 2.0
+   },
+   {
+    "name": "Everton",
+    "best_season": "1890-91",
+    "best_pos": 1,
+    "best_tier": 1,
+    "tier_last": 1.0
+   },
+   {
+    "name": "Manchester City",
+    "best_season": "1936-37",
+    "best_pos": 1,
+    "best_tier": 1,
+    "tier_last": 1.0
+   },
+   {
+    "name": "Liverpool",
+    "best_season": "1900-01",
+    "best_pos": 1,
+    "best_tier": 1,
+    "tier_last": 1.0
+   },
+   {
+    "name": "Sheffield Wednesday",
+    "best_season": "1902-03",
+    "best_pos": 1,
+    "best_tier": 1,
+    "tier_last": 2.0
+   },
+   {
+    "name": "Sheffield United",
+    "best_season": "1897-98",
+    "best_pos": 1,
+    "best_tier": 1,
+    "tier_last": 2.0
+   },
+   {
+    "name": "Preston North End",
+    "best_season": "1888-89",
+    "best_pos": 1,
+    "best_tier": 1,
+    "tier_last": 2.0
+   },
+   {
+    "name": "Sunderland",
+    "best_season": "1891-92",
+    "best_pos": 1,
+    "best_tier": 1,
+    "tier_last": 2.0
+   },
+   {
+    "name": "Newcastle United",
+    "best_season": "1904-05",
+    "best_pos": 1,
+    "best_tier": 1,
+    "tier_last": 1.0
+   },
+   {
+    "name": "Manchester United",
+    "best_season": "1907-08",
+    "best_pos": 1,
+    "best_tier": 1,
+    "tier_last": 1.0
+   },
+   {
+    "name": "Huddersfield Town",
+    "best_season": "1923-24",
+    "best_pos": 1,
+    "best_tier": 1,
+    "tier_last": 3.0
+   },
+   {
+    "name": "West Bromwich Albion",
+    "best_season": "1919-20",
+    "best_pos": 1,
+    "best_tier": 1,
+    "tier_last": 2.0
+   },
+   {
+    "name": "Cardiff City",
+    "best_season": "1923-24",
+    "best_pos": 2,
+    "best_tier": 1,
+    "tier_last": 2.0
+   },
+   {
+    "name": "Charlton Athletic",
+    "best_season": "1936-37",
+    "best_pos": 2,
+    "best_tier": 1,
+    "tier_last": 3.0
+   },
+   {
+    "name": "Bristol City",
+    "best_season": "1906-07",
+    "best_pos": 2,
+    "best_tier": 1,
+    "tier_last": 2.0
+   },
+   {
+    "name": "Notts County",
+    "best_season": "1890-91",
+    "best_pos": 3,
+    "best_tier": 1,
+    "tier_last": 4.0
+   },
+   {
+    "name": "Middlesbrough",
+    "best_season": "1913-14",
+    "best_pos": 3,
+    "best_tier": 1,
+    "tier_last": 2.0
+   },
+   {
+    "name": "Bolton Wanderers",
+    "best_season": "1891-92",
+    "best_pos": 3,
+    "best_tier": 1,
+    "tier_last": 3.0
+   },
+   {
+    "name": "Stoke City",
+    "best_season": "1935-36",
+    "best_pos": 4,
+    "best_tier": 1,
+    "tier_last": 2.0
+   },
+   {
+    "name": "Brentford",
+    "best_season": "1935-36",
+    "best_pos": 5,
+    "best_tier": 1,
+    "tier_last": 1.0
+   },
+   {
+    "name": "Grimsby Town",
+    "best_season": "1934-35",
+    "best_pos": 5,
+    "best_tier": 1,
+    "tier_last": 4.0
+   },
+   {
+    "name": "Bradford City",
+    "best_season": "1910-11",
+    "best_pos": 5,
+    "best_tier": 1,
+    "tier_last": 4.0
+   },
+   {
+    "name": "Lincoln City",
+    "best_season": "1901-02",
+    "best_pos": 5,
+    "best_tier": 2,
+    "tier_last": 3.0
+   },
+   {
+    "name": "Chesterfield",
+    "best_season": "1904-05",
+    "best_pos": 5,
+    "best_tier": 2,
+    "tier_last": 4.0
+   },
+   {
+    "name": "Port Vale",
+    "best_season": "1893-94",
+    "best_pos": 7,
+    "best_tier": 2,
+    "tier_last": 4.0
+   },
+   {
+    "name": "Walsall",
+    "best_season": "1898-99",
+    "best_pos": 6,
+    "best_tier": 2,
+    "tier_last": 4.0
+   },
+   {
+    "name": "Doncaster Rovers",
+    "best_season": "1901-02",
+    "best_pos": 7,
+    "best_tier": 2,
+    "tier_last": 4.0
+   },
+   {
+    "name": "Plymouth Argyle",
+    "best_season": "1931-32",
+    "best_pos": 4,
+    "best_tier": 2,
+    "tier_last": 2.0
+   },
+   {
+    "name": "Crewe Alexandra",
+    "best_season": "1892-93",
+    "best_pos": 10,
+    "best_tier": 2,
+    "tier_last": 4.0
+   },
+   {
+    "name": "Exeter City",
+    "best_season": "1932-33",
+    "best_pos": 2,
+    "best_tier": 3,
+    "tier_last": 3.0
+   }
+  ]
+ },
+ "towns_top": [
+  {
+   "town": "London",
+   "n": 471
+  },
+  {
+   "town": "Liverpool",
+   "n": 232
+  },
+  {
+   "town": "Manchester",
+   "n": 196
+  },
+  {
+   "town": "Birmingham",
+   "n": 168
+  },
+  {
+   "town": "Sheffield",
+   "n": 129
+  },
+  {
+   "town": "Newcastle upon Tyne",
+   "n": 93
+  },
+  {
+   "town": "Nottingham",
+   "n": 89
+  },
+  {
+   "town": "Sunderland",
+   "n": 86
+  },
+  {
+   "town": "West Bromwich",
+   "n": 81
+  },
+  {
+   "town": "Bolton",
+   "n": 73
+  },
+  {
+   "town": "Blackburn",
+   "n": 72
+  },
+  {
+   "town": "Wolverhampton",
+   "n": 70
+  }
+ ],
+ "ever_present_top": [
+  "Aston Villa",
+  "Blackburn Rovers",
+  "Bolton Wanderers",
+  "Burnley",
+  "Derby County",
+  "Everton",
+  "Preston North End",
+  "West Bromwich Albion",
+  "Wolverhampton Wanderers"
+ ],
+ "n_ever_present_league": 9,
+ "spot": {
+  "1888": {
+   "season": "1888-89",
+   "champion": "Preston North End",
+   "clubs": 12,
+   "total": 635129.0,
+   "biggest": [
+    {
+     "name": "Everton",
+     "avg": 7518.0
+    },
+    {
+     "name": "Preston North End",
+     "avg": 6336.0
+    },
+    {
+     "name": "Blackburn Rovers",
+     "avg": 5773.0
+    }
+   ],
+   "north_top": 6,
+   "london_top": 0,
+   "n_top": 12
+  },
+  "1913": {
+   "season": "1913-14",
+   "champion": "Blackburn Rovers",
+   "clubs": 40,
+   "total": 12427938.0,
+   "biggest": [
+    {
+     "name": "Chelsea",
+     "avg": 37316.0
+    },
+    {
+     "name": "Tottenham Hotspur",
+     "avg": 28043.0
+    },
+    {
+     "name": "Manchester City",
+     "avg": 26815.0
+    }
+   ],
+   "north_top": 15,
+   "london_top": 2,
+   "n_top": 20
+  },
+  "1930": {
+   "season": "1930-31",
+   "champion": "Arsenal",
+   "clubs": 88,
+   "total": 21160440.0,
+   "biggest": [
+    {
+     "name": "Arsenal",
+     "avg": 37106.0
+    },
+    {
+     "name": "Chelsea",
+     "avg": 35581.0
+    },
+    {
+     "name": "Aston Villa",
+     "avg": 30802.0
+    }
+   ],
+   "north_top": 14,
+   "london_top": 3,
+   "n_top": 22
+  },
+  "1948": {
+   "season": "1948-49",
+   "champion": "Portsmouth",
+   "clubs": 88,
+   "total": 41242866.0,
+   "biggest": [
+    {
+     "name": "Newcastle United",
+     "avg": 53959.0
+    },
+    {
+     "name": "Arsenal",
+     "avg": 51475.0
+    },
+    {
+     "name": "Tottenham Hotspur",
+     "avg": 48250.0
+    }
+   ],
+   "north_top": 13,
+   "london_top": 3,
+   "n_top": 22
+  },
+  "1966": {
+   "season": "1966-67",
+   "champion": "Manchester United",
+   "clubs": 92,
+   "total": 28870628.0,
+   "biggest": [
+    {
+     "name": "Manchester United",
+     "avg": 53828.0
+    },
+    {
+     "name": "Liverpool",
+     "avg": 46386.0
+    },
+    {
+     "name": "Everton",
+     "avg": 42606.0
+    }
+   ],
+   "north_top": 11,
+   "london_top": 5,
+   "n_top": 22
+  },
+  "1985": {
+   "season": "1985-86",
+   "champion": "Liverpool",
+   "clubs": 92,
+   "total": 16507959.0,
+   "biggest": [
+    {
+     "name": "Manchester United",
+     "avg": 46322.0
+    },
+    {
+     "name": "Liverpool",
+     "avg": 35311.0
+    },
+    {
+     "name": "Everton",
+     "avg": 32324.0
+    }
+   ],
+   "north_top": 6,
+   "london_top": 5,
+   "n_top": 22
+  },
+  "1992": {
+   "season": "1992-93",
+   "champion": "Manchester United",
+   "clubs": 92,
+   "total": 20648946.0,
+   "biggest": [
+    {
+     "name": "Liverpool",
+     "avg": 37004.0
+    },
+    {
+     "name": "Manchester United",
+     "avg": 35132.0
+    },
+    {
+     "name": "Aston Villa",
+     "avg": 29594.0
+    }
+   ],
+   "north_top": 10,
+   "london_top": 6,
+   "n_top": 22
+  },
+  "2024": {
+   "season": "2024-25",
+   "champion": "Liverpool",
+   "clubs": 92,
+   "total": 36427632.0,
+   "biggest": [
+    {
+     "name": "Manchester United",
+     "avg": 73747.0
+    },
+    {
+     "name": "West Ham United",
+     "avg": 62464.0
+    },
+    {
+     "name": "Tottenham Hotspur",
+     "avg": 61127.0
+    }
+   ],
+   "north_top": 5,
+   "london_top": 7,
+   "n_top": 20
+  }
+ },
+ "clubs_1923": 88,
+ "forest": {
+  "t_1976": 2,
+  "pos_1976": 3,
+  "pos_1977": 1,
+  "t_1977": 1
+ },
+ "n_92_from": "1950-51",
+ "n_88": 88
+}
